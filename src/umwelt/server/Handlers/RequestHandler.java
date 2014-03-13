@@ -1,5 +1,7 @@
 package umwelt.server.Handlers;
 /* Request Handler  */
+import umwelt.server.Communication.UmweltRequest;
+import umwelt.server.Communication.UmweltResponse;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.iSocket;
 import umwelt.server.Sockets.iServerSocket;
@@ -17,7 +19,9 @@ public class RequestHandler {
   public void start() {
     while(serverSocket.isOpen()){
       clientSocket = serverSocket.listen();
-      /* parse request  */
+      UmweltRequest request = clientSocket.request();
+      UmweltResponse response = Handler.delegate(request);
+      clientSocket.respondWith(response);
       clientSocket.close();
     }
   }

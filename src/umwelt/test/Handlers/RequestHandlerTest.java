@@ -11,12 +11,10 @@ import umwelt.server.Handlers.RequestHandler;
 
 public class RequestHandlerTest {
   RequestHandler handler;
-  _UmweltServerSocket serverSocket;
-  _UmweltRouter router;
 
   @Before public void init() {
-    serverSocket = new _UmweltServerSocket(3000);
-    router = new _UmweltRouter();
+    _UmweltServerSocket serverSocket = new _UmweltServerSocket(3000);
+    _UmweltRouter router = new _UmweltRouter();
     handler = new RequestHandler(serverSocket, router);
   }
 
