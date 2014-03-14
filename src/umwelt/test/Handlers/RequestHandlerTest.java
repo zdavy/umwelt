@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import umwelt.mocks.Routers._UmweltRouter;
 import umwelt.mocks.Sockets._UmweltServerSocket;
+import umwelt.mocks.Sockets._UmweltSocket;
 import umwelt.server.Handlers.RequestHandler;
 
 public class RequestHandlerTest {
@@ -27,5 +28,12 @@ public class RequestHandlerTest {
   @Test public void handlerClosesClientSocketWhenDone() {
     handler.start();
     assertFalse(handler.clientSocket.isOpen());
+  }
+
+  @Test public void handlerGetsRequestAndSendsResponse() {
+    _UmweltSocket clientSocket = new _UmweltSocket();
+    handler.interact(clientSocket);
+    assertTrue(clientSocket.requestMade);
+    assertTrue(clientSocket.responseSent);
   }
 }

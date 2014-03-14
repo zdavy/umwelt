@@ -1,5 +1,5 @@
 package umwelt.mocks.Sockets;
-/* Mock UmweltServerSocket  */
+
 import umwelt.server.Sockets.iServerSocket;
 import umwelt.server.Sockets.iSocket;
 
@@ -8,9 +8,7 @@ public class _UmweltServerSocket implements iServerSocket {
   private boolean open = true;
   private int port;
 
-  public _UmweltServerSocket(int port) {
-    this.port = port;
-  }
+  public _UmweltServerSocket(int port) { this.port = port; }
 
   public iSocket listen() {
     listen = true;
@@ -20,10 +18,6 @@ public class _UmweltServerSocket implements iServerSocket {
 
   public boolean isOpen() {
     return open;
-  }
-
-  public void close() {
-    open = false;
   }
 
   public boolean listening() { return listen; }

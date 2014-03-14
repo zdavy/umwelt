@@ -1,5 +1,5 @@
 package umwelt.server;
-/* Server  */
+
 import umwelt.server.Handlers.RequestHandler;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.iServerSocket;

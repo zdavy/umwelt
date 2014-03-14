@@ -1,5 +1,5 @@
 package umwelt.server.Handlers;
-/* Request Handler  */
+
 import umwelt.server.Communication.UmweltRequest;
 import umwelt.server.Communication.UmweltResponse;
 import umwelt.server.Routers.iRouter;
@@ -9,20 +9,24 @@ import umwelt.server.Sockets.iServerSocket;
 public class RequestHandler {
   private iServerSocket serverSocket;
   public iSocket clientSocket;
-  iRouter router;
+  private RouteHandler routeHandler;
 
   public RequestHandler(iServerSocket serverSocket, iRouter router) {
-    this.router = router;
+    routeHandler = new RouteHandler(router);
     this.serverSocket = serverSocket;
   }
 
   public void start() {
     while(serverSocket.isOpen()){
       clientSocket = serverSocket.listen();
-      UmweltRequest request = clientSocket.request();
-      UmweltResponse response = Handler.delegate(request);
-      clientSocket.respondWith(response);
+      interact(clientSocket);
       clientSocket.close();
     }
+  }
+
+  public void interact(iSocket clientSocket) {
+      UmweltRequest request = clientSocket.request();
+      UmweltResponse response = routeHandler.delegate(request);
+      clientSocket.respondWith(response);
   }
 }
