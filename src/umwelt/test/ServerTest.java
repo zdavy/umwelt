@@ -26,8 +26,7 @@ public class ServerTest {
   }
 
   @Test public void serverStartsListeningForRequest() {
-    assertFalse(serverSocket.listening());
-    server.start();
+    assertFalse(serverSocket.listening()); server.start();
     assertTrue(serverSocket.listening());
   }
 }

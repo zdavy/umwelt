@@ -1,5 +1,7 @@
 package umwelt.mocks.Sockets;
 
+import java.io.ByteArrayInputStream;
+
 import umwelt.server.Communication.UmweltRequest;
 import umwelt.server.Communication.UmweltResponse;
 import umwelt.server.Sockets.iSocket;
@@ -13,7 +15,7 @@ public class _UmweltSocket implements iSocket {
 
   public UmweltRequest request() {
     requestMade = true;
-    return new UmweltRequest();
+    return new UmweltRequest(new ByteArrayInputStream("test".getBytes()));
   }
 
   public void close() { socketClosed = true; }
