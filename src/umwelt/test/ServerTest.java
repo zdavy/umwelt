@@ -1,5 +1,7 @@
 package umwelt.test;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,9 +27,8 @@ public class ServerTest {
     assertEquals(PORT, server.getPort());
   }
 
-  @Test public void serverStartsListeningForRequest() {
-    assertFalse(serverSocket.listening());
-    server.start();
+  @Test public void serverStartsListeningForRequest() throws IOException {
+    assertFalse(serverSocket.listening()); server.start();
     assertTrue(serverSocket.listening());
   }
 }
