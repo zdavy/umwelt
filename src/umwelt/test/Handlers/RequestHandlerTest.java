@@ -1,5 +1,7 @@
 package umwelt.test.Handlers;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.Before;
 
@@ -19,19 +21,19 @@ public class RequestHandlerTest {
     handler = new RequestHandler(serverSocket, router);
   }
 
-  @Test public void handlerStartReturnsAClientSocket() {
+  @Test public void handlerStartReturnsAClientSocket() throws IOException {
     assertNull(handler.clientSocket);
     handler.start();
     assertNotNull(handler.clientSocket);
   }
 
-  @Test public void handlerClosesClientSocketWhenDone() {
+  @Test public void handlerClosesClientSocketWhenDone() throws IOException {
     _UmweltSocket clientSocket = new _UmweltSocket();
     handler.interact(clientSocket);
     assertTrue(clientSocket.socketClosed);
   }
 
-  @Test public void handlerGetsRequestAndSendsResponse() {
+  @Test public void handlerGetsRequestAndSendsResponse() throws IOException {
     _UmweltSocket clientSocket = new _UmweltSocket();
     handler.interact(clientSocket);
     assertTrue(clientSocket.requestMade);

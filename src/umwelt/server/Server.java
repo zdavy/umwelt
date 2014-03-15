@@ -1,5 +1,7 @@
 package umwelt.server;
 
+import java.io.IOException;
+
 import umwelt.server.Handlers.RequestHandler;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.iServerSocket;
@@ -19,7 +21,7 @@ public class Server {
     return port;
   }
 
-  public void start() {
+  public void start() throws IOException {
     RequestHandler handler = new RequestHandler(serverSocket, router);
     handler.start();
   }

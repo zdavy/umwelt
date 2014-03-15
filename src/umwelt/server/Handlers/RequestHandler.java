@@ -1,5 +1,7 @@
 package umwelt.server.Handlers;
 
+import java.io.IOException;
+
 import umwelt.server.Communication.UmweltRequest;
 import umwelt.server.Communication.UmweltResponse;
 import umwelt.server.Routers.iRouter;
@@ -16,14 +18,14 @@ public class RequestHandler {
     this.serverSocket = serverSocket;
   }
 
-  public void start() {
+  public void start() throws IOException {
     while(serverSocket.isOpen()){
       clientSocket = serverSocket.listen();
       interact(clientSocket);
     }
   }
 
-  public void interact(iSocket clientSocket) {
+  public void interact(iSocket clientSocket) throws IOException {
       UmweltRequest request = clientSocket.request();
       UmweltResponse response = routeHandler.delegate(request);
       clientSocket.respondWith(response);
