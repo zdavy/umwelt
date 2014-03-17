@@ -1,7 +1,8 @@
+/* src.umwelt.test.Handlers.RouteHandlerTest */
 package umwelt.server.Handlers;
 
 import umwelt.server.Communication.iRequest;
-import umwelt.server.Communication.UmweltResponse;
+import umwelt.server.Communication.iResponse;
 import umwelt.server.Routers.iRouter;
 
 public class RouteHandler {
@@ -11,7 +12,7 @@ public class RouteHandler {
     setRouter(router);
   }
 
-  public UmweltResponse delegate(iRequest request) {
+  public iResponse delegate(iRequest request) {
     return router.route(request);
   }
 

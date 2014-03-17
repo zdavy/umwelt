@@ -1,9 +1,10 @@
+/* src.umwelt.test.Handlers.RequestHandlerTest */
 package umwelt.server.Handlers;
 
 import java.io.IOException;
 
 import umwelt.server.Communication.UmweltRequest;
-import umwelt.server.Communication.UmweltResponse;
+import umwelt.server.Communication.iResponse;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.iSocket;
 import umwelt.server.Sockets.iServerSocket;
@@ -27,7 +28,7 @@ public class RequestHandler {
 
   public void interact(iSocket clientSocket) throws IOException {
       UmweltRequest request = clientSocket.request();
-      UmweltResponse response = routeHandler.delegate(request);
+      iResponse response = routeHandler.delegate(request);
       clientSocket.respondWith(response);
       clientSocket.close();
   }
