@@ -28,7 +28,8 @@ public class ServerTest {
   }
 
   @Test public void serverStartsListeningForRequest() throws IOException {
-    assertFalse(serverSocket.listening()); server.start();
+    assertFalse(serverSocket.listening());
+    server.start();
     assertTrue(serverSocket.listening());
   }
 }
