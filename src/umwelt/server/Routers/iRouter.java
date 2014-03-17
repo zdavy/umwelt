@@ -1,3 +1,7 @@
 package umwelt.server.Routers;
 
-public interface iRouter {}
+import umwelt.server.Communication.*;
+
+public interface iRouter {
+  public UmweltResponse route(iRequest request);
+}

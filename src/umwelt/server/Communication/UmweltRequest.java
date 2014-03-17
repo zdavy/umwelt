@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 
-public class UmweltRequest {
+public class UmweltRequest implements iRequest {
   private BufferedReader request;
   private Hashtable<String, String> requestLine = new Hashtable<String, String>();
   private Hashtable<String, String> header = new Hashtable<String, String>();
@@ -15,7 +15,7 @@ public class UmweltRequest {
   public UmweltRequest(InputStream input) throws IOException {
     request = parse(input);
     assignRequestLine();
-    assignHeaders();
+    assignHeader();
     assignBody();
   }
 
@@ -55,7 +55,7 @@ public class UmweltRequest {
     requestLine.put("version", options[2]);
   }
 
-  private void assignHeaders() throws IOException {
+  private void assignHeader() throws IOException {
     String[] values;
     String headers = request.readLine();
     while(!headers.equals("")) {

@@ -3,6 +3,7 @@ package umwelt.server;
 import java.io.IOException;
 
 import umwelt.server.Handlers.RequestHandler;
+import umwelt.server.Routers.UmweltRouter;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.iServerSocket;
 
@@ -11,8 +12,8 @@ public class Server {
   private iServerSocket serverSocket;
   private iRouter router;
 
-  public Server(iServerSocket serverSocket, iRouter router) {
-    this.router = router;
+  public Server(iServerSocket serverSocket) {
+    this.router = new UmweltRouter();
     this.serverSocket = serverSocket;
     setPort();
   }
