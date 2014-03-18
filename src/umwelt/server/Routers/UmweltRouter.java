@@ -3,36 +3,52 @@ package umwelt.server.Routers;
 
 import umwelt.server.Communication.*;
 import umwelt.server.Handlers.FOFHandler;
+import umwelt.server.Handlers.FileHandler;
 import umwelt.server.Handlers.GetHandler;
 import umwelt.server.Handlers.PostHandler;
 
 public class UmweltRouter implements iRouter {
-  String method;
 
   public iResponse route(iRequest request){
-    setMethod(request.method());
     return handle(request);
   };
 
+  public void addRoute(String method, String uri, iResponse response) {
+      if (method.equals("get")) {
+        GetHandler.addRoute(uri, response);
+      }
+      else if (method.equals("post")) {
+        PostHandler.addRoute(uri, response);
+      }
+      else {
+        System.out.println("This Handler Doesn't Exist Yet :-)");
+      }
+  }
+
   private iResponse handle(iRequest request){
-    if (get()) {
+    String uri = request.uri();
+    String method = request.method();
+
+    if (get(uri, method)) {
       return GetHandler.handle(request);
-    } else if (post()) {
+    } else if (file(uri)){
+      return FileHandler.handle(request);
+    } else if (post(uri, method)) {
       return PostHandler.handle(request);
     } else {
       return FOFHandler.handle(request);
     }
   }
 
-  private boolean get() {
-    return method.equals("get");
+  private boolean get(String uri, String method) {
+    return (GetHandler.routes.containsKey(uri) && method.equals("get")) ;
   }
 
-  private boolean post() {
-    return method.equals("post");
+  private boolean file(String uri) {
+    return FileHandler.exists(uri);
   }
 
-  private void setMethod(String method){
-    this.method = method;
+  private boolean post(String uri, String method) {
+    return (PostHandler.routes.containsKey(uri) && method.equals("get")) ;
   }
 }
