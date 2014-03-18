@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import umwelt.server.Communication.UmweltRequest;
-import umwelt.server.Communication.UmweltResponse;
+import umwelt.server.Communication.iResponse;
 import umwelt.server.Sockets.iSocket;
 
 public class _UmweltSocket implements iSocket {
@@ -23,5 +23,5 @@ public class _UmweltSocket implements iSocket {
   }
 
   public void close() { socketClosed = true; }
-  public void respondWith(UmweltResponse _) { responseSent = true; }
+  public void respondWith(iResponse _) { responseSent = true; }
 }

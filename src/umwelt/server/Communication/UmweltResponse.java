@@ -1,6 +1,6 @@
 package umwelt.server.Communication;
 
-public class UmweltResponse {
+public class UmweltResponse implements iResponse {
   public UmweltResponse() {
   }
 }
