@@ -2,7 +2,6 @@
 package umwelt.server.Handlers;
 
 import java.util.Hashtable;
-
 import umwelt.server.Communication.*;
 
 public class GetHandler {
@@ -14,7 +13,7 @@ public class GetHandler {
 
   public static iResponse handle(iRequest request) {
     uri = request.uri();
-    return routes.get(uri).process(request);
+    return routes.get(uri).proccess(request);
   }
 
   public static void addRoute(String uri, iResponse response) {

@@ -1,5 +1,5 @@
 package umwelt.server.Communication;
 
 public interface iResponse {
-  public iResponse process(iRequest request);
+  public iResponse proccess(iRequest request);
 }

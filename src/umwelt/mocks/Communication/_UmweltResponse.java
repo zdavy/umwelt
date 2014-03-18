@@ -6,7 +6,8 @@ import umwelt.server.Communication.iResponse;
 public class _UmweltResponse implements iResponse {
   public _UmweltResponse() {
   }
-  public _UmweltResponse process(iRequest request) {
+
+  public _UmweltResponse proccess(iRequest request) {
     return this;
   }
 }

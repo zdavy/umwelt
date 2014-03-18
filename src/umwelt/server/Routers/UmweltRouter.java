@@ -16,25 +16,28 @@ public class UmweltRouter implements iRouter {
   public void addRoute(String method, String uri, iResponse response) {
       if (method.equals("get")) {
         GetHandler.addRoute(uri, response);
-      }
-      else if (method.equals("post")) {
+
+      } else if (method.equals("post")) {
         PostHandler.addRoute(uri, response);
-      }
-      else {
+
+      } else {
         System.out.println("This Handler Doesn't Exist Yet :-)");
       }
   }
 
   private iResponse handle(iRequest request){
-    String uri = request.uri();
+    String uri    = request.uri();
     String method = request.method();
 
     if (get(uri, method)) {
       return GetHandler.handle(request);
+
     } else if (file(uri)){
       return FileHandler.handle(request);
+
     } else if (post(uri, method)) {
       return PostHandler.handle(request);
+
     } else {
       return FOFHandler.handle(request);
     }
