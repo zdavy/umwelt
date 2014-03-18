@@ -6,32 +6,27 @@ import org.junit.Test;
 import umwelt.mocks.Communication.*;
 import umwelt.server.Routers.*;
 import umwelt.server.Communication.FOFResponse;
-import umwelt.server.Communication.GetResponse;
-import umwelt.server.Communication.PostResponse;
-import umwelt.server.Communication.iResponse;
+import umwelt.server.Communication.UmweltResponse;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 public class UmweltRouterTest {
-  @Test public void GetMethodsDelegegateToGetHandlerReturnsGetResponse() {
+  @Test public void GetMethodsDelegegateToGetHandlerReturnsUmweltResponse() {
     iRouter router = new UmweltRouter();
     _GetRequest request = new _GetRequest();
-    iResponse response = router.route(request);
-    assertThat(response, instanceOf(GetResponse.class));
+    assertThat(router.route(request), instanceOf(UmweltResponse.class));
   }
 
-  @Test public void PostMethodsDelegegateToPostHandlerReturnsPostResponse() {
+  @Test public void PostMethodsDelegegateToPostHandlerReturnsUmweltResponse() {
     iRouter router = new UmweltRouter();
     _PostRequest request = new _PostRequest();
-    iResponse response = router.route(request);
-    assertThat(response, instanceOf(PostResponse.class));
+    assertThat(router.route(request), instanceOf(UmweltResponse.class));
   }
 
   @Test public void FOFMethodsDelegegateToFOFHandlerReturnsFOFResponse() {
     iRouter router = new UmweltRouter();
     _FOFRequest request = new _FOFRequest();
-    iResponse response = router.route(request);
-    assertThat(response, instanceOf(FOFResponse.class));
+    assertThat(router.route(request), instanceOf(FOFResponse.class));
   }
 }

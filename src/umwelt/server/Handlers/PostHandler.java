@@ -1,11 +1,9 @@
 package umwelt.server.Handlers;
 
-import umwelt.server.Communication.PostResponse;
-import umwelt.server.Communication.iRequest;
-import umwelt.server.Communication.iResponse;
+import umwelt.server.Communication.*;
 
 public class PostHandler {
   public static iResponse handle(iRequest request) {
-    return new PostResponse();
+    return new UmweltResponse();
   }
 }
