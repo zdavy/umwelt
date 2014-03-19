@@ -1,11 +1,7 @@
-/* src.umwelt.server.Routers */
+/* src.umwelt.test.Routers.UmweltRouterTest */
 package umwelt.server.Routers;
 
 import umwelt.server.Communication.*;
-import umwelt.server.Handlers.FOFHandler;
-import umwelt.server.Handlers.FileHandler;
-import umwelt.server.Handlers.GetHandler;
-import umwelt.server.Handlers.PostHandler;
 import umwelt.server.Handlers.iResponseHandler;
 
 public class UmweltRouter implements iRouter {
@@ -21,18 +17,12 @@ public class UmweltRouter implements iRouter {
 
   public void addRoute(String method, String uri, iResponse response) {
       iResponseHandler handler = determineHandler(method);
+      if(handler == null) {
+        System.out.println("That Handler Doesn't Exist Yet :-)");
+      } else {
       handler.addRoute(uri, response);
+    }
   }
-  /*     if (method.equals("get")) { */
-  /*       GetHandler.addRoute(uri, response); */
-  /*  */
-  /*     } else if (method.equals("post")) { */
-  /*       PostHandler.addRoute(uri, response); */
-  /*  */
-  /*     } else { */
-  /*       System.out.println("This Handler Doesn't Exist Yet :-)"); */
-  /*     } */
-  /* } */
 
   private iResponseHandler determineHandler(String method) {
     for(iResponseHandler handler : handlers) {
@@ -43,41 +33,20 @@ public class UmweltRouter implements iRouter {
     return null;
   }
 
-private iResponseHandler determineHandler(iRequest request) {
-  for(iResponseHandler handler : handlers) {
-    if(handler.valid(request)) {
-      return handler;
+  private iResponseHandler determineHandler(iRequest request) {
+    for(iResponseHandler handler : handlers) {
+      if(handler.valid(request)) {
+        return handler;
+      }
     }
+    return null;
   }
-  return null;
-}
 
   private iResponse handle(iRequest request){
     iResponseHandler handler = determineHandler(request);
+    if(handler == null) {
+      return new FOFResponse();
+    }
     return handler.handle(request);
-    /* if (get(uri, method)) { */
-    /*   return GetHandler.handle(request); */
-    /*  */
-    /* } else if (file(uri)){ */
-    /*   return FileHandler.handle(request); */
-    /*  */
-    /* } else if (post(uri, method)) { */
-    /*   return PostHandler.handle(request); */
-    /*  */
-    /* } else { */
-    /*   return FOFHandler.handle(request); */
-    /* } */
-  }
-
-  private boolean get(String uri, String method) {
-    return (GetHandler.routes.containsKey(uri) && method.equals("get")) ;
-  }
-
-  private boolean file(String uri) {
-    return FileHandler.exists(uri);
-  }
-
-  private boolean post(String uri, String method) {
-    return (PostHandler.routes.containsKey(uri) && method.equals("get")) ;
   }
 }
