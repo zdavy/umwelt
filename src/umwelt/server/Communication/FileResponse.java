@@ -4,7 +4,7 @@ public class FileResponse implements iResponse {
   public FileResponse() {
   }
 
-  public FileResponse process(iRequest request) {
+  public iResponse proccess(iRequest request) {
     return this;
   }
 }

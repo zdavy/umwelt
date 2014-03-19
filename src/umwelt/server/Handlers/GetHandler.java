@@ -4,19 +4,22 @@ package umwelt.server.Handlers;
 import java.util.Hashtable;
 import umwelt.server.Communication.*;
 
-public class GetHandler {
-  public static Hashtable<String, iResponse> routes;
-  static String uri;
-  static {
-    routes = new Hashtable<String, iResponse>();
+public class GetHandler implements iResponseHandler {
+  private Hashtable<String, iResponse> routes = new Hashtable<String, iResponse>();
+
+  public String type(){
+    return "get";
   }
 
-  public static iResponse handle(iRequest request) {
-    uri = request.uri();
-    return routes.get(uri).proccess(request);
+  public boolean valid(iRequest request){
+    return false;
   }
 
-  public static void addRoute(String uri, iResponse response) {
+  public iResponse handle(iRequest request) {
+    return routes.get(request.uri()).proccess(request);
+  }
+
+  public void addRoute(String uri, iResponse response) {
     routes.put(uri, response);
   }
 }

@@ -11,9 +11,10 @@ import static org.junit.Assert.*;
 
 public class GetHandlerTest {
   @Test public void responseIsProccessedWithRequestData() {
-    GetHandler.addRoute("/test", new _UmweltResponse());
+    GetHandler handler = new GetHandler();
+    handler.addRoute("/test", new _UmweltResponse());
     _UmweltRequest request = new _UmweltRequest();
-    GetHandler.handle(request);
+    handler.handle(request);
     assertTrue(request.proccessed);
   }
 }

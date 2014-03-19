@@ -8,12 +8,14 @@ import org.junit.Test;
 
 import umwelt.mocks.Sockets._UmweltServerSocket;
 import umwelt.server.Server;
+import umwelt.server.Handlers.iResponseHandler;
 
 import static org.junit.Assert.*;
 
 public class ServerTest {
   int PORT = 3000;
   _UmweltServerSocket serverSocket;
+  iResponseHandler[] handlers;
   Server server;
 
   @Before public void before() {
