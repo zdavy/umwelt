@@ -3,8 +3,8 @@ package umwelt.mocks.Communication.Requests;
 import umwelt.server.Communication.Requests.iRequest;
 
 public class _UmweltRequest implements iRequest {
-  public String method = "";
-  public String uri = "/";
+  public String method = "test";
+  public String uri = "/test";
 
   public boolean proccessed = false;
   public _UmweltRequest() {
@@ -23,7 +23,6 @@ public class _UmweltRequest implements iRequest {
   }
 
   public String uri() {
-    proccessed = true;
     return uri;
   }
 }
