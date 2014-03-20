@@ -1,4 +1,6 @@
-package umwelt.server.Communication;
+package umwelt.server.Communication.Responses;
+
+import umwelt.server.Communication.Requests.iRequest;
 
 public class UmweltResponse implements iResponse {
   public UmweltResponse() {

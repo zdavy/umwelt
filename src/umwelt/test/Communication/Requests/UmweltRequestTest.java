@@ -1,16 +1,14 @@
 /* src.umwelt.server.Communication.UmweltRequest */
-package umwelt.test.Communication;
+package umwelt.test.Communication.Requests;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import umwelt.server.Communication.UmweltRequest;
-
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.*;
 import static org.junit.Assert.*;
+
+import umwelt.server.Communication.Requests.UmweltRequest;
 
 public class UmweltRequestTest {
   UmweltRequest request;

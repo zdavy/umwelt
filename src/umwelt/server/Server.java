@@ -5,16 +5,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import umwelt.server.Controllers.iController;
 import umwelt.server.Handlers.RequestHandler;
-import umwelt.server.Handlers.iResponseHandler;
 import umwelt.server.Routers.UmweltRouter;
 import umwelt.server.Routers.iRouter;
-import umwelt.server.Sockets.iServerSocket;
+import umwelt.server.Sockets.Server.iServerSocket;
 
 public class Server {
   private int port;
   private iServerSocket serverSocket;
-  private ArrayList<iResponseHandler> handlers = new ArrayList<iResponseHandler>();
+  private ArrayList<iController> controllers = new ArrayList<iController>();
   private iRouter router;
 
   public Server(iServerSocket serverSocket) {
@@ -26,16 +26,16 @@ public class Server {
     return port;
   }
 
-  public void addHandlers(iResponseHandler... handlers){
-    this.handlers.addAll(Arrays.asList(handlers));
+  public void addControllers(iController... controllers){
+    this.controllers.addAll(Arrays.asList(controllers));
   }
 
-  public void addHandler(iResponseHandler handler){
-    this.handlers.add(handler);
+  public void addController(iController controller){
+    this.controllers.add(controller);
   }
 
   public void start() throws IOException {
-    this.router = new UmweltRouter(handlers.toArray(new iResponseHandler[handlers.size()]));
+    this.router = new UmweltRouter(controllers.toArray(new iController[controllers.size()]));
     RequestHandler handler = new RequestHandler(serverSocket, router);
     handler.start();
   }

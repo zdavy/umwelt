@@ -1,10 +1,12 @@
-/* src.umwelt.test.Handlers.GetHandlerTest */
-package umwelt.server.Handlers;
+/* src.umwelt.test.Controllers.GetHandlerTest */
+package umwelt.server.Controllers;
 
 import java.util.Hashtable;
-import umwelt.server.Communication.*;
 
-public class GetHandler implements iResponseHandler {
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.iResponse;
+
+public class GetController implements iController {
   private Hashtable<String, iResponse> routes = new Hashtable<String, iResponse>();
 
   public String type(){

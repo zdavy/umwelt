@@ -3,9 +3,9 @@ package umwelt.test.Handlers;
 
 import org.junit.Test;
 
+import umwelt.mocks.Communication.Requests._UmweltRequest;
 import umwelt.mocks.Routers._UmweltRouter;
 import umwelt.server.Handlers.RouteHandler;
-import umwelt.mocks.Communication._UmweltRequest;
 
 import static org.junit.Assert.*;
 

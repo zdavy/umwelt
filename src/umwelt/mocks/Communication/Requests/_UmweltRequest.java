@@ -1,6 +1,6 @@
-package umwelt.mocks.Communication;
+package umwelt.mocks.Communication.Requests;
 
-import umwelt.server.Communication.iRequest;
+import umwelt.server.Communication.Requests.iRequest;
 
 public class _UmweltRequest implements iRequest {
   public boolean proccessed = false;

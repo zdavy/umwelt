@@ -1,7 +1,8 @@
-package umwelt.mocks.Sockets;
+package umwelt.mocks.Sockets.Server;
 
-import umwelt.server.Sockets.iServerSocket;
-import umwelt.server.Sockets.iSocket;
+import umwelt.mocks.Sockets.Client._UmweltSocket;
+import umwelt.server.Sockets.Client.iSocket;
+import umwelt.server.Sockets.Server.iServerSocket;
 
 public class _UmweltServerSocket implements iServerSocket {
   private boolean listen = false;

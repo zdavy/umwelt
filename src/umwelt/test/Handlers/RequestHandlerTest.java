@@ -9,8 +9,8 @@ import org.junit.Before;
 import static org.junit.Assert.*;
 
 import umwelt.mocks.Routers._UmweltRouter;
-import umwelt.mocks.Sockets._UmweltServerSocket;
-import umwelt.mocks.Sockets._UmweltSocket;
+import umwelt.mocks.Sockets.Client._UmweltSocket;
+import umwelt.mocks.Sockets.Server._UmweltServerSocket;
 import umwelt.server.Handlers.RequestHandler;
 
 public class RequestHandlerTest {

@@ -1,13 +1,13 @@
-package umwelt.mocks.Handlers;
+package umwelt.mocks.Controllers;
 
-import umwelt.mocks.Communication._UmweltResponse;
-import umwelt.server.Communication.iRequest;
-import umwelt.server.Communication.iResponse;
-import umwelt.server.Handlers.iResponseHandler;
+import umwelt.mocks.Communication.Responses._UmweltResponse;
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.iResponse;
+import umwelt.server.Controllers.Controller;
 
-public class _PostHandler implements iResponseHandler {
+public class _PostController implements Controller {
   private boolean valid = false;
-  public _PostHandler() {  }
+  public _PostController() {  }
 
   public String type() {
     return "MockPost";

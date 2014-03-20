@@ -1,8 +1,8 @@
 package umwelt.mocks.Routers;
 
-import umwelt.server.Communication.UmweltResponse;
-import umwelt.server.Communication.iRequest;
-import umwelt.server.Communication.iResponse;
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.UmweltResponse;
+import umwelt.server.Communication.Responses.iResponse;
 import umwelt.server.Routers.iRouter;
 
 public class _UmweltRouter implements iRouter {

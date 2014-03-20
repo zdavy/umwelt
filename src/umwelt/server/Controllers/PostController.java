@@ -1,13 +1,15 @@
-package umwelt.server.Handlers;
+package umwelt.server.Controllers;
 
 import java.util.Hashtable;
 
-import umwelt.server.Communication.*;
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.UmweltResponse;
+import umwelt.server.Communication.Responses.iResponse;
 
-public class PostHandler implements iResponseHandler {
+public class PostController implements iController {
   public static Hashtable<String, iResponse> routes;
 
-  public PostHandler() {
+  public PostController() {
 
   }
 

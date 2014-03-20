@@ -1,5 +1,5 @@
-/* src.umwelt.test.Communication.UmweltRequestTest */
-package umwelt.server.Communication;
+/* src.umwelt.test.Communication.Requests.UmweltRequestTest */
+package umwelt.server.Communication.Requests;
 
 import java.io.BufferedReader;
 import java.io.IOException;

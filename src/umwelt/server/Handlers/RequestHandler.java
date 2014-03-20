@@ -3,11 +3,11 @@ package umwelt.server.Handlers;
 
 import java.io.IOException;
 
-import umwelt.server.Communication.UmweltRequest;
-import umwelt.server.Communication.iResponse;
+import umwelt.server.Communication.Requests.UmweltRequest;
+import umwelt.server.Communication.Responses.iResponse;
 import umwelt.server.Routers.iRouter;
-import umwelt.server.Sockets.iSocket;
-import umwelt.server.Sockets.iServerSocket;
+import umwelt.server.Sockets.Client.iSocket;
+import umwelt.server.Sockets.Server.iServerSocket;
 
 public class RequestHandler {
   private iServerSocket serverSocket;

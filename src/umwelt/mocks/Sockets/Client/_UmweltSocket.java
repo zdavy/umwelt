@@ -1,11 +1,11 @@
-package umwelt.mocks.Sockets;
+package umwelt.mocks.Sockets.Client;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import umwelt.server.Communication.UmweltRequest;
-import umwelt.server.Communication.iResponse;
-import umwelt.server.Sockets.iSocket;
+import umwelt.server.Communication.Requests.UmweltRequest;
+import umwelt.server.Communication.Responses.iResponse;
+import umwelt.server.Sockets.Client.iSocket;
 
 public class _UmweltSocket implements iSocket {
   public boolean socketClosed = false;

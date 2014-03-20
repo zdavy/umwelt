@@ -1,4 +1,4 @@
-package umwelt.server.Communication;
+package umwelt.server.Communication.Requests;
 
 public interface iRequest {
   public String method();

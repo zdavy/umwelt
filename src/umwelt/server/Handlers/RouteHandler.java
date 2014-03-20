@@ -1,8 +1,8 @@
 /* src.umwelt.test.Handlers.RouteHandlerTest */
 package umwelt.server.Handlers;
 
-import umwelt.server.Communication.iRequest;
-import umwelt.server.Communication.iResponse;
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.iResponse;
 import umwelt.server.Routers.iRouter;
 
 public class RouteHandler {

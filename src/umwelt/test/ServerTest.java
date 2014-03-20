@@ -6,16 +6,16 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import umwelt.mocks.Sockets._UmweltServerSocket;
+import umwelt.mocks.Sockets.Server._UmweltServerSocket;
 import umwelt.server.Server;
-import umwelt.server.Handlers.iResponseHandler;
+import umwelt.server.Controllers.iController;
 
 import static org.junit.Assert.*;
 
 public class ServerTest {
   int PORT = 3000;
   _UmweltServerSocket serverSocket;
-  iResponseHandler[] handlers;
+  iController[] controllers;
   Server server;
 
   @Before public void before() {
