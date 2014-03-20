@@ -1,16 +1,31 @@
 package umwelt.mocks.Controllers;
 
+import java.util.Hashtable;
+
 import umwelt.mocks.Communication.Responses._UmweltResponse;
 import umwelt.server.Communication.Requests.iRequest;
 import umwelt.server.Communication.Responses.iResponse;
-import umwelt.server.Controllers.Controller;
+import umwelt.server.Controllers.iController;
 
-public class _PostController implements Controller {
+public class _Controller implements iController {
+  public Hashtable<String, iResponse> routes = new Hashtable<String, iResponse>();
+  public String name;
   private boolean valid = false;
-  public _PostController() {  }
+
+  public _Controller(String name) {
+    this.name = name;
+  }
 
   public String type() {
     return "MockPost";
+  }
+
+  public Hashtable<String, iResponse> getRoutes(){
+    return routes;
+  }
+
+  public void stubRoute(String uri, iResponse response){
+    routes.put(uri, response);
   }
 
   public void stubValid(boolean response) {

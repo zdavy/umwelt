@@ -5,5 +5,4 @@ import umwelt.server.Communication.Responses.iResponse;
 
 public interface iRouter {
   public iResponse route(iRequest request);
-  public void addRoute(String method, String uri, iResponse response);
 }

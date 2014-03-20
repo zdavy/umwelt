@@ -24,4 +24,8 @@ public class GetController implements iController {
   public void addRoute(String uri, iResponse response) {
     routes.put(uri, response);
   }
+
+  public Hashtable<String, iResponse> getRoutes() {
+    return routes;
+  }
 }

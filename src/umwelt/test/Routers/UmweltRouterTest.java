@@ -1,44 +1,42 @@
 /* src.umwelt.server.Routers.UmweltRouter */
 package umwelt.test.Routers;
 
+import umwelt.server.Routers.UmweltRouter;
+import umwelt.mocks.Controllers._Controller;
+import umwelt.server.Communication.Requests.iRequest;
+import umwelt.server.Communication.Responses.iResponse;
+import umwelt.server.Communication.Responses.FOFResponse;
+import umwelt.mocks.Communication.Requests._UmweltRequest;
+import umwelt.mocks.Communication.Responses._UmweltResponse;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import umwelt.mocks.Communication._GetRequest;
-import umwelt.mocks.Communication._PostRequest;
-import umwelt.mocks.Communication.Responses._UmweltResponse;
-import umwelt.mocks.Controllers._GetController;
-import umwelt.mocks.Controllers._PostController;
-import umwelt.server.Communication.Responses.iResponse;
-import umwelt.server.Routers.UmweltRouter;
-import umwelt.server.Routers.iRouter;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 public class UmweltRouterTest {
-  _GetController  getController  = new _GetController();
-  _PostController postController = new _PostController();
-  iRouter controller = new UmweltRouter(getController, postController);
+  UmweltRouter router;
+  _UmweltResponse response;
+  _Controller testController;
+  _UmweltRequest request;
 
   @Before public void init() {
-    controller.addRoute("MockGet", "/test", new _UmweltResponse());
-    controller.addRoute("MockPost", "/test", new _UmweltResponse());
+    request        = new _UmweltRequest();
+    testController = new _Controller("test");
+    response       = new _UmweltResponse();
+    testController.stubRoute("get/test", response);
   }
 
-  @Test public void Get404IfRouteDoesntExistGetResponseIfItDoes() {
-    _GetRequest request = new _GetRequest();
-
-    assertThat(controller.route(request), instanceOf(iResponse.class));
-    getController.stubValid(true);
-    assertThat(controller.route(request), not(instanceOf(iResponse.class)));
+  @Test public void returns404IfNoRoute(){
+    router = new UmweltRouter(testController);
+    assertThat(router.route(request), instanceOf(FOFResponse.class));
   }
 
-  @Test public void Get404IfRouteDoesntExistPostResponseIfItDoes() {
-    _PostRequest request = new _PostRequest();
-
-    assertThat(controller.route(request), instanceOf(iResponse.class));
-    postController.stubValid(true);
-    assertThat(controller.route(request), not(instanceOf(iResponse.class)));
+  @Test public void HasCorrectControllerDealWithRequest(){
+    router = new UmweltRouter(testController);
+    request.stubMethod("get");
+    request.stubURI("/test");
+    assertThat(router.route(request), not(instanceOf(FOFResponse.class)));
   }
 }
