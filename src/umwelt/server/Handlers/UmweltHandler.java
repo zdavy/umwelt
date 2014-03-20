@@ -9,13 +9,13 @@ import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.Client.iSocket;
 import umwelt.server.Sockets.Server.iServerSocket;
 
-public class RequestHandler {
+public class UmweltHandler {
   private iServerSocket serverSocket;
   public  iSocket       clientSocket;
-  private RouteHandler  routeHandler;
+  public  iRouter       router;
 
-  public RequestHandler(iServerSocket serverSocket, iRouter router) {
-    routeHandler = new RouteHandler(router);
+  public UmweltHandler(iServerSocket serverSocket, iRouter router) {
+    this.router = router;
     this.serverSocket = serverSocket;
   }
 
@@ -28,7 +28,7 @@ public class RequestHandler {
 
   public void interact(iSocket clientSocket) throws IOException {
       UmweltRequest request = clientSocket.request();
-      iResponse response = routeHandler.delegate(request);
+      iResponse response = router.route(request);
       clientSocket.respondWith(response);
       clientSocket.close();
   }

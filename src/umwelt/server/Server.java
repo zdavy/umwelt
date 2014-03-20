@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import umwelt.server.Controllers.iController;
-import umwelt.server.Handlers.RequestHandler;
+import umwelt.server.Handlers.UmweltHandler;
 import umwelt.server.Routers.UmweltRouter;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.Server.iServerSocket;
@@ -36,7 +36,7 @@ public class Server {
 
   public void start() throws IOException {
     this.router = new UmweltRouter(controllers.toArray(new iController[controllers.size()]));
-    RequestHandler handler = new RequestHandler(serverSocket, router);
+    UmweltHandler handler = new UmweltHandler(serverSocket, router);
     handler.start();
   }
 

@@ -9,6 +9,8 @@ import umwelt.mocks.Communication.Responses._UmweltResponse;
 
 public class _Controller implements iController {
   private Hashtable<String, iResponse> routes;
+  private iResponse response = new _UmweltResponse();
+  private boolean valid = false;
   public String type;
 
   public _Controller(String type) {
@@ -17,11 +19,23 @@ public class _Controller implements iController {
   }
 
   public iResponse handle(iRequest request) {
-    return new _UmweltResponse();
+    return response;
   }
 
   public Hashtable<String, iResponse> getRoutes(){
     return routes;
+  }
+
+  public boolean valid(iRequest request) {
+    return valid;
+  }
+
+  public void stubValid(boolean stub) {
+    valid = stub;
+  }
+
+  public void stubResponse(iResponse stub) {
+    response = stub;
   }
 
   public void stubRoute(String route, iResponse response){

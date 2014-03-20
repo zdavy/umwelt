@@ -1,4 +1,4 @@
-/* src.umwelt.server.Handlers.RequestHandler */
+/* src.umwelt.server.Handlers.UmweltHandler */
 package umwelt.test.Handlers;
 
 import java.io.IOException;
@@ -11,15 +11,15 @@ import static org.junit.Assert.*;
 import umwelt.mocks.Routers._UmweltRouter;
 import umwelt.mocks.Sockets.Client._UmweltSocket;
 import umwelt.mocks.Sockets.Server._UmweltServerSocket;
-import umwelt.server.Handlers.RequestHandler;
+import umwelt.server.Handlers.UmweltHandler;
 
-public class RequestHandlerTest {
-  RequestHandler handler;
+public class HandlerTest {
+  UmweltHandler handler;
 
   @Before public void init() {
     _UmweltServerSocket serverSocket = new _UmweltServerSocket(3000);
     _UmweltRouter router = new _UmweltRouter();
-    handler = new RequestHandler(serverSocket, router);
+    handler = new UmweltHandler(serverSocket, router);
   }
 
   @Test public void handlerStartReturnsAClientSocket() throws IOException {

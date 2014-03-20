@@ -3,8 +3,6 @@ package umwelt.test.Routers;
 
 import umwelt.server.Routers.UmweltRouter;
 import umwelt.mocks.Controllers._Controller;
-import umwelt.server.Communication.Requests.iRequest;
-import umwelt.server.Communication.Responses.iResponse;
 import umwelt.server.Communication.Responses.FOFResponse;
 import umwelt.mocks.Communication.Requests._UmweltRequest;
 import umwelt.mocks.Communication.Responses._UmweltResponse;
@@ -31,12 +29,13 @@ public class UmweltRouterTest {
   @Test public void returns404IfNoRoute(){
     router = new UmweltRouter(testController);
     assertThat(router.route(request), instanceOf(FOFResponse.class));
+    assertThat(router.route(request), not(instanceOf(_UmweltResponse.class)));
   }
 
   @Test public void HasCorrectControllerDealWithRequest(){
     router = new UmweltRouter(testController);
-    request.stubMethod("get");
-    request.stubURI("/test");
+    testController.stubValid(true);
+    assertThat(router.route(request), instanceOf(_UmweltResponse.class));
     assertThat(router.route(request), not(instanceOf(FOFResponse.class)));
   }
 }
