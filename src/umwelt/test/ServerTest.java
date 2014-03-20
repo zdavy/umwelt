@@ -19,6 +19,7 @@ public class ServerTest {
   Server server;
 
   @Before public void before() {
+    /* System.out.println(System.getProperty("user.dir")); */
     serverSocket = new _UmweltServerSocket(PORT);
     server = new Server(serverSocket);
   }

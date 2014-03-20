@@ -12,9 +12,9 @@ public class FOFController implements iController {
   public FOFController() {
   }
 
-  public String type() {
-    return "404";
-  }
+  /* public String type() { */
+  /*   return "404"; */
+  /* } */
 
   public boolean valid(iRequest request) {
     return false;
