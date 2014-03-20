@@ -10,9 +10,9 @@ import umwelt.server.Controllers.FOFController;
 import umwelt.server.Controllers.iController;
 
 public class UmweltRouter implements iRouter {
-  Hashtable<String, iController> routeList = new Hashtable<String, iController>();
-  iController fofController = new FOFController();
-  iController[] controllers;
+  private Hashtable<String, iController> routeList;
+  private iController fofController = new FOFController();
+  private iController[] controllers;
 
   public UmweltRouter(iController... controllers) {
     this.controllers = controllers;
@@ -20,6 +20,7 @@ public class UmweltRouter implements iRouter {
   }
 
   private void setRoutes() {
+    routeList = new Hashtable<String, iController>();
     for(iController controller : controllers) {
       Enumeration<String> routes = controller.getRoutes().keys();
       while(routes.hasMoreElements()) {
@@ -34,9 +35,6 @@ public class UmweltRouter implements iRouter {
 
   private iController determineController(iRequest request) {
     String key = request.method() + request.uri();
-    if(routeList.containsKey(key)){
-      return routeList.get(key);
-    }
-    return fofController;
+    return (routeList.containsKey(key)) ? routeList.get(key) : fofController;
   }
 }
