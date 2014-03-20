@@ -10,7 +10,7 @@ import umwelt.server.Controllers.AbstractController;
 
 import static org.junit.Assert.*;
 
-public class ControllerTest {
+public class AbstractControllerTest {
   AbstractController controller;
   _UmweltRequest     request;
   _UmweltResponse    getResponse;
