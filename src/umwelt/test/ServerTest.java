@@ -26,7 +26,6 @@ public class ServerTest {
   @Test public void serverAssignsPropperPort() {
     assertEquals(PORT, server.getPort());
   }
-
   @Test public void serverStartsListeningForRequest() throws IOException {
     assertFalse(serverSocket.listening());
     server.start();

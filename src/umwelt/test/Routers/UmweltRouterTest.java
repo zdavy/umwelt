@@ -1,6 +1,8 @@
 /* src.umwelt.server.Routers.UmweltRouter */
 package umwelt.test.Routers;
 
+import java.io.IOException;
+
 import umwelt.server.Routers.UmweltRouter;
 import umwelt.mocks.Controllers._Controller;
 import umwelt.server.Communication.Responses.FOFResponse;
@@ -26,13 +28,13 @@ public class UmweltRouterTest {
     testController.stubRoute("get/test", response);
   }
 
-  @Test public void returns404IfNoRoute(){
+  @Test public void returns404IfNoRoute() throws IOException {
     router = new UmweltRouter(testController);
     assertThat(router.route(request), instanceOf(FOFResponse.class));
     assertThat(router.route(request), not(instanceOf(_UmweltResponse.class)));
   }
 
-  @Test public void HasCorrectControllerDealWithRequest(){
+  @Test public void HasCorrectControllerDealWithRequest() throws IOException {
     router = new UmweltRouter(testController);
     testController.stubValid(true);
     assertThat(router.route(request), instanceOf(_UmweltResponse.class));

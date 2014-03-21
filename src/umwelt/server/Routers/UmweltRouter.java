@@ -1,6 +1,8 @@
 /* src.umwelt.test.Routers.UmweltRouterTest */
 package umwelt.server.Routers;
 
+import java.io.IOException;
+
 import umwelt.server.Communication.Requests.iRequest;
 import umwelt.server.Communication.Responses.iResponse;
 import umwelt.server.Controllers.FOFController;
@@ -14,7 +16,7 @@ public class UmweltRouter implements iRouter {
     this.controllers = controllers;
   }
 
-  public iResponse route(iRequest request){
+  public iResponse route(iRequest request) throws IOException {
     return determineController(request).handle(request);
   }
 

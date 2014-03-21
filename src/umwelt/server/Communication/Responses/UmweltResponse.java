@@ -7,12 +7,12 @@ import umwelt.server.Communication.Requests.iRequest;
 public class UmweltResponse implements iResponse {
   private Hashtable<String, String> statusLine;
   private Hashtable<String, String> header;
-  private Hashtable<String, String> body;
+  private Hashtable<String, byte[]> body;
 
   public UmweltResponse() {
     statusLine = new Hashtable<String, String>();
     header = new Hashtable<String, String>();
-    body = new Hashtable<String, String>();
+    body = new Hashtable<String, byte[]>();
   }
 
   public void status(String code, String reason) {
@@ -38,10 +38,14 @@ public class UmweltResponse implements iResponse {
 
   public void setContent(byte[] content){
     contentLength(Integer.toString(content.length));
-    setBody(content.toString());
+    setBody(content);
   }
 
   public Hashtable<String, String> getResponseLine() {
+    return statusLine;
+  }
+
+  public Hashtable<String, String> getStatusLine() {
     return statusLine;
   }
 
@@ -49,7 +53,7 @@ public class UmweltResponse implements iResponse {
     return header;
   }
 
-  public Hashtable<String, String> getBody() {
+  public Hashtable<String, byte[]> getBody() {
     return body;
   }
 
@@ -57,7 +61,7 @@ public class UmweltResponse implements iResponse {
     header.put("Content-Length", length);
   }
 
-  private void setBody(String content){
+  private void setBody(byte[] content){
     body.put("content", content);
   }
 
