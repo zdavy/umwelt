@@ -7,11 +7,11 @@ import umwelt.server.Sockets.ServerSocket.iServerSocket;
 import umwelt.server.Sockets.Socket.iSocket;
 import umwelt.server.Utils.iParser;
 
-public class Handler {
-  private  iParser parser;
-  private  iRouter router;
-  private  iSocket volksempfanger;
+public class Handler implements iHandler {
   private  iServerSocket empfanger;
+  private  iSocket volksempfanger;
+  private  iRouter router;
+  private  iParser parser;
 
   public Handler(iServerSocket empfanger, iRouter router, iParser parser) {
     this.empfanger = empfanger;
@@ -33,7 +33,7 @@ public class Handler {
       volksempfanger.respondWith(response);
       volksempfanger.close();
     } catch (Exception e) {
-    volksempfanger.close();
+      volksempfanger.close();
     }
   }
 }

@@ -4,6 +4,12 @@ import java.util.Hashtable;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import umwelt.mocks.Controllers._Controller;
+import umwelt.mocks.Sockets.ServerSocket._Empfanger;
+import umwelt.mocks.Sockets.Socket._Volksempfanger;
+import umwelt.server.Server;
+
 import static org.junit.Assert.*;
 
 public class ServerTest {

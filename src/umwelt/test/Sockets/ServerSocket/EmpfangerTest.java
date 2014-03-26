@@ -3,8 +3,14 @@ package umwelt.test.Sockets.ServerSocket;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import umwelt.mocks.Sockets.ServerSocket._ServerSocket;
+import umwelt.mocks.Util._Parser;
+import umwelt.server.Sockets.ServerSocket.Empfanger;
+import umwelt.server.Sockets.Socket.iSocket;
 
 public class EmpfangerTest {
   Empfanger empfanger;
@@ -24,6 +30,6 @@ public class EmpfangerTest {
 
   @Test public void UmweltServerListensWithClientSocket() throws IOException {
     iSocket socket = empfanger.listen();
-    assertNull(socket.request());
+    assertNull(socket.request(new _Parser()));
   }
 }
