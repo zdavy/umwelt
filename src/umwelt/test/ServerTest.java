@@ -4,18 +4,12 @@ import java.util.Hashtable;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import umwelt.mocks.Controllers._Controller;
-import umwelt.mocks.Sockets.Client._UmweltSocket;
-import umwelt.mocks.Sockets.Server._UmweltServerSocket;
-import umwelt.server.Server;
-
 import static org.junit.Assert.*;
 
 public class ServerTest {
   Hashtable<String, String> responseLine;
-  _UmweltServerSocket serverSocket;
-  _UmweltSocket socket;
+  _Empfanger serverSocket;
+  _Volksempfanger socket;
   int PORT = 3000;
   Server server;
 
@@ -25,9 +19,9 @@ public class ServerTest {
   }
 
   @Before public void init() throws Exception {
-    serverSocket = new _UmweltServerSocket(PORT);
+    serverSocket = new _Empfanger(PORT);
     server = new Server(serverSocket);
-    socket = new _UmweltSocket();
+    socket = new _Volksempfanger();
     server.addController(new _Controller("test"));
     serverSocket.stubListener(socket);
   }

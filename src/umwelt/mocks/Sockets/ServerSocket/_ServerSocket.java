@@ -1,10 +1,10 @@
-package umwelt.mocks.Sockets.Server;
+package umwelt.mocks.Sockets.ServerSocket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import umwelt.mocks.Sockets.Client._Socket;
+import umwelt.mocks.Sockets.Socket._Socket;
 
 public class _ServerSocket extends ServerSocket {
   private boolean closed = false;

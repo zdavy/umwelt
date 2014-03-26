@@ -1,11 +1,10 @@
 package umwelt.mocks.Responses;
-
-import java.util.Hashtable;
-
 import umwelt.server.Requests.iRequest;
 import umwelt.server.Responses.iResponse;
 
-public class _UmweltResponse implements iResponse {
+import java.util.Hashtable;
+
+public class _Response implements iResponse {
   private String code = "200";
 
   public Hashtable<String, String> getResponseLine() {
@@ -24,8 +23,7 @@ public class _UmweltResponse implements iResponse {
   public Hashtable<String, byte[]> getBody() {
     return null;
   }
-  public _UmweltResponse() {
-  }
+  public _Response() {  }
 
   public byte[] toByte() throws Exception {
     return new byte[0];
@@ -37,7 +35,5 @@ public class _UmweltResponse implements iResponse {
   public void setHeader(String key, String value) {  }
   public void setStatus(String method, String uri) {  }
 
-  public _UmweltResponse proccess(iRequest request) {
-    return this;
-  }
+  public _Response proccess(iRequest request) { return this; }
 }

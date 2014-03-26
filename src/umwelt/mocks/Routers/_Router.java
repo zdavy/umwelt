@@ -1,20 +1,20 @@
 package umwelt.mocks.Routers;
 
-import umwelt.mocks.Responses._UmweltResponse;
+import umwelt.mocks.Responses._Response;
 import umwelt.server.Controllers.iController;
 import umwelt.server.Requests.iRequest;
 import umwelt.server.Routers.iRouter;
 
-public class _UmweltRouter implements iRouter {
+public class _Router implements iRouter {
   iRequest routed;
 
-  public _UmweltRouter(iController[] controllers) {
+  public _Router(iController[] controllers) {
   }
 
   @Override
-  public _UmweltResponse route(iRequest request) {
+  public _Response route(iRequest request) {
     routed = request;
-    return new _UmweltResponse();
+    return new _Response();
   }
 
   public boolean routed_with(iRequest request) {

@@ -1,4 +1,4 @@
-package umwelt.mocks.Sockets.Client;
+package umwelt.mocks.Sockets.Socket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

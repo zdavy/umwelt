@@ -1,23 +1,24 @@
-package umwelt.server.Sockets.Client;
+package umwelt.server.Sockets.Socket;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import umwelt.server.Requests.UmweltRequest;
+import umwelt.server.Requests.iRequest;
 import umwelt.server.Responses.iResponse;
+import umwelt.server.Utils.iParser;
 
-public class UmweltSocket implements iSocket {
+public class Volksempfanger implements iSocket {
   private Socket socket;
 
-  public UmweltSocket(Socket clientSocket) throws IOException {
+  public Volksempfanger(Socket clientSocket) throws IOException {
     this.socket = clientSocket;
   }
 
-  public UmweltRequest request() throws IOException {
+  public iRequest request(iParser parser) throws IOException {
     InputStream input = socket.getInputStream();
-    return invalid(input) ? null : new UmweltRequest(input);
+    return invalid(input) ? null : parser.request(input);
   }
 
   private boolean invalid(InputStream input) {

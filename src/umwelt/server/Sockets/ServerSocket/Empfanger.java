@@ -1,17 +1,17 @@
-package umwelt.server.Sockets.Server;
+package umwelt.server.Sockets.ServerSocket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import umwelt.server.Sockets.Client.UmweltSocket;
-import umwelt.server.Sockets.Client.iSocket;
+import umwelt.server.Sockets.Socket.Volksempfanger;
+import umwelt.server.Sockets.Socket.iSocket;
 
-public class UmweltServerSocket implements iServerSocket {
+public class Empfanger implements iServerSocket {
   private int port;
   private ServerSocket serverSocket;
 
-  public UmweltServerSocket(int port) throws IOException {
+  public Empfanger(int port) throws IOException {
     this.port = port;
     setServerSocket(new ServerSocket(port));
   }
@@ -29,8 +29,8 @@ public class UmweltServerSocket implements iServerSocket {
   }
 
   public iSocket listen() throws IOException {
-    Socket clientSocket = serverSocket.accept();
-    return new UmweltSocket(clientSocket);
+    Socket socket = serverSocket.accept();
+    return new Volksempfanger(socket);
   }
 
   public void close() throws IOException {

@@ -3,19 +3,21 @@ package umwelt.server;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import umwelt.server.Sockets.Server.iServerSocket;
 import umwelt.server.Controllers.iController;
-import umwelt.server.Handlers.UmweltHandler;
+import umwelt.server.Handlers.Handler;
 import umwelt.server.Responses.iFactory;
-import umwelt.server.Routers.UmweltRouter;
+import umwelt.server.Routers.iRouter;
+import umwelt.server.Sockets.ServerSocket.iServerSocket;
+import umwelt.server.Utils.iParser;
 
 public class Server {
   private ArrayList<iController> controllers;
   private iController[] allControllers;
   private iServerSocket serverSocket;
-  private UmweltHandler handler;
-  private UmweltRouter router;
+  private Handler handler;
+  private iRouter router;
   private iFactory factory;
+  private iParser parser;
   private String DIR = System.getProperty("user.dir");
 
   public Server(iServerSocket serverSocket) {
@@ -31,12 +33,12 @@ public class Server {
     this.factory = factory;
   }
 
-  public void changeDir(String dir) {
-    DIR = dir;
-  }
-
   public void addDir(String dir) {
     DIR = DIR + "/" + dir;
+  }
+
+  public void changeDir(String dir) {
+    DIR = dir;
   }
 
   public void start() throws Exception {
@@ -56,10 +58,10 @@ public class Server {
   }
 
   private void generateRouter() {
-    this.router = new UmweltRouter(allControllers, factory);
+    this.router = new Router(allControllers, factory);
   }
 
   private void generateHandler() {
-    handler = new UmweltHandler(serverSocket, router);
+    handler = new Handler(serverSocket, router, parser);
   }
 }

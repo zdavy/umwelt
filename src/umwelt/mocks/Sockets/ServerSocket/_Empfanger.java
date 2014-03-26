@@ -1,18 +1,18 @@
-package umwelt.mocks.Sockets.Server;
+package umwelt.mocks.Sockets.ServerSocket;
 
-import umwelt.mocks.Sockets.Client._UmweltSocket;
-import umwelt.server.Sockets.Client.iSocket;
-import umwelt.server.Sockets.Server.iServerSocket;
+import umwelt.mocks.Sockets.Socket._Volksempfanger;
+import umwelt.server.Sockets.ServerSocket.iServerSocket;
+import umwelt.server.Sockets.Socket.iSocket;
 
-public class _UmweltServerSocket implements iServerSocket {
+public class _Empfanger implements iServerSocket {
   private boolean listen = false;
   public boolean open;
   iSocket listener;
   private int port;
 
-  public _UmweltServerSocket(int port) {
+  public _Empfanger(int port) {
     open = true;
-    listener = new _UmweltSocket();
+    listener = new _Volksempfanger();
     this.port = port;
   }
 
