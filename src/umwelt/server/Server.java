@@ -6,6 +6,7 @@ import java.util.Arrays;
 import umwelt.server.Controllers.iController;
 import umwelt.server.Handlers.Handler;
 import umwelt.server.Responses.iFactory;
+import umwelt.server.Routers.Verkehrswege;
 import umwelt.server.Routers.iRouter;
 import umwelt.server.Sockets.ServerSocket.iServerSocket;
 import umwelt.server.Utils.iParser;
@@ -58,7 +59,7 @@ public class Server {
   }
 
   private void generateRouter() {
-    this.router = new Router(allControllers, factory);
+    this.router = new Verkehrswege(allControllers, factory);
   }
 
   private void generateHandler() {
