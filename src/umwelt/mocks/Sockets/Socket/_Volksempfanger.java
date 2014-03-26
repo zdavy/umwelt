@@ -2,37 +2,31 @@ package umwelt.mocks.Sockets.Socket;
 import umwelt.server.Sockets.Socket.iSocket;
 import umwelt.server.Utils.iParser;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import umwelt.mocks.Requests._Request;
 import umwelt.server.Responses.iResponse;
 
 public class _Volksempfanger implements iSocket {
-  public boolean socketClosed = false;
-  public boolean requestMade = false;
-  public boolean responseSent = false;
   public iResponse response;
   public String requestData;
+  public _Request request;
 
   public _Volksempfanger() {
-    requestData = "GET / HTTP/1.1\r\n" +
-                  "Test: Header\r\n" +
-                  "Content-Length: 9\r\n\r\ndata=test";
+    request = new _Request("test", "/test");
   }
 
   public _Request request(iParser parser) throws IOException {
-    requestMade = true;
-    return new _Request(new ByteArrayInputStream(requestData.getBytes()));
+    return request;
   }
 
-  public void stubRequest(String data) {
-    requestData = data;
+  public void stubRequest(String method, String uri) {
+    request = new _Request(method, uri);
   }
 
-  public void close() { socketClosed = true; }
   public void respondWith(iResponse response) throws Exception {
     this.response = response;
-    responseSent = true;
   }
+
+  public void close() { }
 }

@@ -6,18 +6,11 @@ import umwelt.server.Sockets.Socket.iSocket;
 
 public class _Empfanger implements iServerSocket {
   private boolean listen = false;
-  public boolean open;
+  public boolean open = true;
   iSocket listener;
-  private int port;
 
   public _Empfanger(int port) {
-    open = true;
     listener = new _Volksempfanger();
-    this.port = port;
-  }
-
-  public void mockOpen() {
-    open = true;
   }
 
   public void stubListener(iSocket listener) {
@@ -32,5 +25,4 @@ public class _Empfanger implements iServerSocket {
 
   public boolean isOpen() { return open; }
   public boolean listening() { return listen; }
-  public int getPort() { return port; }
 }

@@ -26,7 +26,7 @@ public class Handler implements iHandler {
     }
   }
 
-  public void interact(iSocket volksempfanger) throws Exception {
+  private void interact(iSocket volksempfanger) throws Exception {
     try {
       iRequest request = volksempfanger.request(parser);
       iResponse response = router.route(request);

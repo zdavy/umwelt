@@ -1,11 +1,15 @@
 package umwelt.test;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.Hashtable;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import umwelt.mocks.Controllers._Controller;
+import umwelt.mocks.Responses._Factory;
 import umwelt.mocks.Sockets.ServerSocket._Empfanger;
 import umwelt.mocks.Sockets.Socket._Volksempfanger;
 import umwelt.server.Server;
@@ -14,6 +18,7 @@ import static org.junit.Assert.*;
 
 public class ServerTest {
   Hashtable<String, String> responseLine;
+  _Controller controller;
   _Empfanger serverSocket;
   _Volksempfanger socket;
   int PORT = 3000;
@@ -28,25 +33,45 @@ public class ServerTest {
     serverSocket = new _Empfanger(PORT);
     server = new Server(serverSocket);
     socket = new _Volksempfanger();
-    server.addController(new _Controller("test"));
+    _Factory factory = new _Factory();
+    controller = new _Controller(factory);
+    server.addController(controller);
     serverSocket.stubListener(socket);
+    server.addResponseFactory(factory);
+    createFile("test.txt");
+  }
+
+  @After public void denit() {
+    destroyFile("test.txt");
   }
 
   @Test public void ACCEPTANCE_TEST_200() throws Exception {
-    socket.stubRequest("GET /test.txt HTTP/1.1\r\nTest: Header\r\n");
+    socket.stubRequest("get", "/test.txt");
+    controller.stubMethodExists(true);
     interact();
     assertEquals("200", responseLine.get("code"));
   }
 
+  @Test public void ACCEPTANCE_TEST_405() throws Exception {
+    socket.stubRequest("put", "/test.txt");
+    interact();
+    assertEquals("405", responseLine.get("code"));
+  }
+
   @Test public void ACCEPTANCE_TEST_404() throws Exception {
-    socket.stubRequest("GET /test.fake HTTP/1.1\r\nTest: Header\r\n");
+    socket.stubRequest("get", "/toast.txt");
     interact();
     assertEquals("404", responseLine.get("code"));
   }
 
-  @Test public void ACCEPTANCE_TEST_405() throws Exception {
-    socket.stubRequest("PUT /test.txt HTTP/1.1\r\nTest: Header\r\n");
-    interact();
-    assertEquals("405", responseLine.get("code"));
+  public void createFile(String filename) throws Exception {
+    new File(filename).createNewFile();
+    PrintWriter writer = new PrintWriter(filename, "UTF-8");
+    writer.println("test");
+    writer.close();
+  }
+
+  public void destroyFile(String filename) {
+    new File(filename).delete();
   }
 }
