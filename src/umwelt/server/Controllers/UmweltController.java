@@ -1,26 +1,33 @@
 package umwelt.server.Controllers;
 
-import java.io.IOException;
 import java.util.Hashtable;
 
 import umwelt.server.Requests.iRequest;
 import umwelt.server.Responses.UmweltFactory;
+import umwelt.server.Responses.iFactory;
 import umwelt.server.Responses.iResponse;
 
 public class UmweltController implements iController {
-  Hashtable<String, Hashtable<String, iResponse>> routes;
-  Hashtable<String, iResponse> responder;
+  protected Hashtable<String, Hashtable<String, iResponse>> routes;
+  protected Hashtable<String, iResponse> responder;
+  protected String DIR;
+  protected iFactory factory;
 
   public UmweltController() {
+    DIR = System.getProperty("user.dir");
     routes = new Hashtable<String, Hashtable<String, iResponse>>();
   }
 
-  public iResponse handle(iRequest request) throws IOException {
+  public iResponse handle(iRequest request) throws Exception {
+    newFactory();
     String route = request.uri();
     String method = request.method();
-    UmweltFactory factory = new UmweltFactory("DIR");
       iResponse response = routes.get(route).get(method);
       return (response == null) ? factory.MethodNotAllowed() : response;
+  }
+
+  private void newFactory() {
+    factory = new UmweltFactory();
   }
 
   public boolean valid(iRequest request) {

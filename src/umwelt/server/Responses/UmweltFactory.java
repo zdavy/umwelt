@@ -11,8 +11,8 @@ public class UmweltFactory implements iFactory {
   private iResponse response;
   private String DIR;
 
-  public UmweltFactory(String dir) {
-    DIR = dir;
+  public UmweltFactory() {
+    DIR = System.getProperty("user.dir") + "/public/";
   }
 
 /*_________________________________ RESPONSE ________________________________ */
@@ -32,11 +32,11 @@ public class UmweltFactory implements iFactory {
 
 /*____________________________________404____________________________________ */
 
-  public iResponse _404_() throws IOException {
+  public iResponse FileNotFound() throws IOException {
     response = new UmweltResponse();
     set404();
     response.setHeader("Content-Type", "text/html");
-    assign404File(DIR + "/404.html");
+    assign404File(DIR + "404.html");
     return response;
   }
 
@@ -58,7 +58,7 @@ public class UmweltFactory implements iFactory {
     response = new UmweltResponse();
     set405();
     response.setHeader("Content-Type", "text/html");
-    assign405File(DIR + "/405.html");
+    assign405File(DIR + "405.html");
     return response;
   }
 

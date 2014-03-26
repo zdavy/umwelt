@@ -20,7 +20,7 @@ public class UmweltFactoryTest {
   iRequest request;
 
   @Before public void init() {
-    factory = new UmweltFactory(System.getProperty("user.dir") + "/public");
+    factory = new UmweltFactory();
     request = new _UmweltRequest();
   }
 

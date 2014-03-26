@@ -1,7 +1,5 @@
 package umwelt.test.Controllers;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +26,7 @@ public class UmweltControllerTest {
     controller.addRoute("post", "/post", postResponse);
   }
 
-  @Test public void ReturnsTheCorrectResponse() throws IOException {
+  @Test public void ReturnsTheCorrectResponse() throws Exception {
     iResponse response;
 
     request.stubMethod("get");
@@ -64,7 +62,7 @@ public class UmweltControllerTest {
     assertTrue(controller.valid(request));
   }
 
-  @Test public void AddsAllRouteTypes() throws IOException {
+  @Test public void AddsAllRouteTypes() throws Exception {
     controller = new UmweltController();
     iResponse response = new _UmweltResponse();
 
