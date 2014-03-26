@@ -8,6 +8,9 @@ import umwelt.mocks.Requests._Request;
 import umwelt.server.Responses.iResponse;
 
 public class _Volksempfanger implements iSocket {
+  public boolean wasRequested = false;
+  public boolean wasResponded = false;
+  public boolean wasClosed = false;
   public iResponse response;
   public String requestData;
   public _Request request;
@@ -17,6 +20,7 @@ public class _Volksempfanger implements iSocket {
   }
 
   public _Request request(iParser parser) throws IOException {
+    wasRequested = true;
     return request;
   }
 
@@ -25,8 +29,11 @@ public class _Volksempfanger implements iSocket {
   }
 
   public void respondWith(iResponse response) throws Exception {
+    wasResponded = true;
     this.response = response;
   }
 
-  public void close() { }
+  public void close() {
+    wasClosed = true;
+  }
 }

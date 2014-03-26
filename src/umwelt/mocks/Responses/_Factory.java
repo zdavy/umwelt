@@ -3,7 +3,10 @@ package umwelt.mocks.Responses;
 import umwelt.server.Responses.iFactory;
 
 public class _Factory implements iFactory {
+  public boolean fileWasNotFound = false;
+
   public _Response FileNotFound() throws Exception {
+    fileWasNotFound = true;
     _Response response = new _Response();
     response.stubCode("404");
     return response;

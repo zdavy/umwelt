@@ -13,6 +13,7 @@ import umwelt.mocks.Responses._Factory;
 import umwelt.mocks.Sockets.ServerSocket._Empfanger;
 import umwelt.mocks.Sockets.Socket._Volksempfanger;
 import umwelt.server.Server;
+import umwelt.test.Helpers.FileHelper;
 
 import static org.junit.Assert.*;
 
@@ -38,11 +39,11 @@ public class ServerTest {
     server.addController(controller);
     serverSocket.stubListener(socket);
     server.addResponseFactory(factory);
-    createFile("test.txt");
+    FileHelper.createFile("test.txt");
   }
 
   @After public void denit() {
-    destroyFile("test.txt");
+    FileHelper.destroyFile("test.txt");
   }
 
   @Test public void ACCEPTANCE_TEST_200() throws Exception {
@@ -62,16 +63,5 @@ public class ServerTest {
     socket.stubRequest("get", "/toast.txt");
     interact();
     assertEquals("404", responseLine.get("code"));
-  }
-
-  public void createFile(String filename) throws Exception {
-    new File(filename).createNewFile();
-    PrintWriter writer = new PrintWriter(filename, "UTF-8");
-    writer.println("test");
-    writer.close();
-  }
-
-  public void destroyFile(String filename) {
-    new File(filename).delete();
   }
 }

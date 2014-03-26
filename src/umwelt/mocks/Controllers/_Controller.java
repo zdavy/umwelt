@@ -8,7 +8,7 @@ import umwelt.mocks.Responses._Response;
 import umwelt.server.Requests.iRequest;
 
 public class _Controller implements iController {
-  private _Response response = new _Response();
+  public _Response response = new _Response();
   public _Factory factory;
   public boolean method;
 
