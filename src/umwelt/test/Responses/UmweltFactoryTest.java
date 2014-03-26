@@ -26,7 +26,7 @@ public class UmweltFactoryTest {
 
 /*_______________________________GET  RESPONSE_______________________________ */
 
-  @Test public void GET_RESPONSE() throws IOException {
+  @Test public void GetResponse() throws IOException {
     String file = System.getProperty("user.dir") + "/test/test.txt";
     response = factory.get(file, request);
 
@@ -40,7 +40,7 @@ public class UmweltFactoryTest {
 
 /*____________________________ 404 HTML RESPONSE ____________________________ */
 
-  @Test public void F0F_RESPONSE_IF_404HTML() throws IOException {
+  @Test public void F0FResponseIf404TML() throws IOException {
     response = factory._404_();
 
     Hashtable<String, String> responseLine = response.getResponseLine();
@@ -53,7 +53,7 @@ public class UmweltFactoryTest {
 
 /*___________________________ 404 STOCK RESPONSE ____________________________ */
 
-  @Test public void F0F_RESPONSE_IF_NO_HTML() throws IOException {
+  @Test public void F0FResponseIfNoHTML() throws IOException {
     response = new UmweltFactory(System.getProperty("user.dir"))._404_();
 
     Hashtable<String, String> responseLine = response.getResponseLine();
@@ -62,5 +62,18 @@ public class UmweltFactoryTest {
 
     String stringContent = new String(response.getBody().get("content"), "UTF-8");
     assertThat(stringContent, containsString("404 File Not Found"));
+  }
+
+/*_________________________ 405 METHOD NOT ALLOWED ____________________________ */
+
+  @Test public void F05MethodNotAllowed() throws IOException {
+    response = factory.MethodNotAllowed();
+
+    Hashtable<String, String> responseLine = response.getResponseLine();
+    assertEquals("405", responseLine.get("code"));
+    assertEquals("Method Not Allowed", responseLine.get("reason"));
+
+    String stringContent = new String(response.getBody().get("content"), "UTF-8");
+    assertThat(stringContent, containsString("Not Allowed"));
   }
 }

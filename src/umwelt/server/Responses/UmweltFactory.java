@@ -36,7 +36,7 @@ public class UmweltFactory implements iFactory {
     response = new UmweltResponse();
     set404();
     response.setHeader("Content-Type", "text/html");
-    assign404File(DIR + "404.html");
+    assign404File(DIR + "/404.html");
     return response;
   }
 
@@ -47,11 +47,32 @@ public class UmweltFactory implements iFactory {
 
   public void assign404File(String file) {
     try {
-      response.setContent(bytify(DIR + "/404.html")); }
+      response.setContent(bytify(file)); }
     catch (Exception e) {
       response.setContent("404 File Not Found"); }
   }
 
+/*_____________________________Method Not Allowed____________________________ */
+
+  public iResponse MethodNotAllowed() throws IOException {
+    response = new UmweltResponse();
+    set405();
+    response.setHeader("Content-Type", "text/html");
+    assign405File(DIR + "/405.html");
+    return response;
+  }
+
+  private void set405() {
+    response.setStatus("405", "Method Not Allowed");
+    response.setVersion("HTTP/1.1");
+  }
+
+  public void assign405File(String file) {
+    try {
+      response.setContent(bytify(file)); }
+    catch (Exception e) {
+      response.setContent("405 Method Not Allowed"); }
+  }
 /*___________________________________________________________________________ */
 
   private byte[] bytify(String path) throws IOException {
