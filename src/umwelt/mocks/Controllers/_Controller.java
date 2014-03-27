@@ -1,16 +1,17 @@
 package umwelt.mocks.Controllers;
 
+import java.io.File;
 import java.util.Hashtable;
 
+import dasBoot.Controllers.iController;
+import dasBoot.Requests.iRequest;
+import dasBoot.Responses.iResponse;
+
 import umwelt.mocks.Responses._UmweltResponse;
-import umwelt.server.Controllers.iController;
-import umwelt.server.Requests.iRequest;
-import umwelt.server.Responses.iResponse;
 
 public class _Controller implements iController {
   private Hashtable<String, iResponse> routes;
-  private iResponse response = new _UmweltResponse();
-  private boolean valid = false;
+  private _UmweltResponse response = new _UmweltResponse();
   public String type;
 
   public _Controller(String type) {
@@ -19,6 +20,8 @@ public class _Controller implements iController {
   }
 
   public iResponse handle(iRequest request) {
+    String code = (request.method().equals("GET")) ? "200" : "405";
+    response.stubCode(code);
     return response;
   }
 
@@ -27,14 +30,11 @@ public class _Controller implements iController {
   }
 
   public boolean valid(iRequest request) {
+    boolean valid = new File(System.getProperty("user.dir") + request.uri()).exists();
     return valid;
   }
 
-  public void stubValid(boolean stub) {
-    valid = stub;
-  }
-
-  public void stubResponse(iResponse stub) {
+  public void stubResponse(_UmweltResponse stub) {
     response = stub;
   }
 

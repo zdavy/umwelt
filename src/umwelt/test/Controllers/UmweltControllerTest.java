@@ -3,10 +3,11 @@ package umwelt.test.Controllers;
 import org.junit.Before;
 import org.junit.Test;
 
+import dasBoot.Responses.iResponse;
+
 import umwelt.mocks.Requests._UmweltRequest;
 import umwelt.mocks.Responses._UmweltResponse;
 import umwelt.server.Controllers.UmweltController;
-import umwelt.server.Responses.iResponse;
 
 import static org.junit.Assert.*;
 

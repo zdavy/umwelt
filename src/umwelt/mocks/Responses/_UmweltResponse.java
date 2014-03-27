@@ -2,8 +2,8 @@ package umwelt.mocks.Responses;
 
 import java.util.Hashtable;
 
-import umwelt.server.Requests.iRequest;
-import umwelt.server.Responses.iResponse;
+import dasBoot.Requests.iRequest;
+import dasBoot.Responses.iResponse;
 
 public class _UmweltResponse implements iResponse {
   private String code = "200";

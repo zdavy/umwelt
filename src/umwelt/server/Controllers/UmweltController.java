@@ -2,10 +2,12 @@ package umwelt.server.Controllers;
 
 import java.util.Hashtable;
 
-import umwelt.server.Requests.iRequest;
 import umwelt.server.Responses.UmweltFactory;
-import umwelt.server.Responses.iFactory;
-import umwelt.server.Responses.iResponse;
+
+import dasBoot.Controllers.iController;
+import dasBoot.Requests.iRequest;
+import dasBoot.Responses.iFactory;
+import dasBoot.Responses.iResponse;
 
 public class UmweltController implements iController {
   protected Hashtable<String, Hashtable<String, iResponse>> routes;
@@ -27,7 +29,7 @@ public class UmweltController implements iController {
   }
 
   private void newFactory() {
-    factory = new UmweltFactory();
+    factory = new UmweltFactory(DIR);
   }
 
   public boolean valid(iRequest request) {

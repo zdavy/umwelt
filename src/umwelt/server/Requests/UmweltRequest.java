@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 
+import dasBoot.Requests.iRequest;
+
 public class UmweltRequest implements iRequest {
   private BufferedReader request;
   private Hashtable<String, String> requestLine = new Hashtable<String, String>();

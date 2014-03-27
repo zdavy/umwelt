@@ -6,42 +6,43 @@ import java.util.Hashtable;
 import org.junit.Before;
 import org.junit.Test;
 
+import dasBoot.Responses.iResponse;
+
+import umwelt.mocks.Requests._UmweltRequest;
+import umwelt.server.Responses.UmweltFactory;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
-import umwelt.mocks.Requests._UmweltRequest;
-import umwelt.server.Requests.iRequest;
-import umwelt.server.Responses.UmweltFactory;
-import umwelt.server.Responses.iResponse;
-
 public class UmweltFactoryTest {
+  String DIR = System.getProperty("user.dir");
   UmweltFactory factory;
   iResponse response;
-  iRequest request;
+  _UmweltRequest request;
 
   @Before public void init() {
-    factory = new UmweltFactory();
+    factory = new UmweltFactory(DIR + "/public");
     request = new _UmweltRequest();
   }
 
 /*_______________________________GET  RESPONSE_______________________________ */
 
-  @Test public void GetResponse() throws IOException {
-    String file = System.getProperty("user.dir") + "/test/test.txt";
-    response = factory.get(file, request);
+  @Test public void GetResponse() throws Exception {
+    request.stubURI("/index");
+    response = factory.get(request);
 
     Hashtable<String, String> responseLine = response.getResponseLine();
     assertEquals("200", responseLine.get("code"));
     assertEquals("OK", responseLine.get("reason"));
 
     Hashtable<String, String> header = response.getHeader();
-    assertEquals("20", header.get("Content-Length"));
+    assertEquals("0", header.get("Content-Length"));
   }
 
 /*____________________________ 404 HTML RESPONSE ____________________________ */
 
-  @Test public void F0FResponseIf404TML() throws IOException {
-    response = factory._404_();
+  @Test public void F0FResponseIf404TML() throws Exception {
+    response = factory.FileNotFound();
 
     Hashtable<String, String> responseLine = response.getResponseLine();
     assertEquals("404", responseLine.get("code"));
@@ -53,8 +54,8 @@ public class UmweltFactoryTest {
 
 /*___________________________ 404 STOCK RESPONSE ____________________________ */
 
-  @Test public void F0FResponseIfNoHTML() throws IOException {
-    response = new UmweltFactory(System.getProperty("user.dir"))._404_();
+  @Test public void F0FResponseIfNoHTML() throws Exception {
+    response = new UmweltFactory(DIR).FileNotFound();
 
     Hashtable<String, String> responseLine = response.getResponseLine();
     assertEquals("404", responseLine.get("code"));

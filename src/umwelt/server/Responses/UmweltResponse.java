@@ -2,7 +2,8 @@ package umwelt.server.Responses;
 
 import java.util.Hashtable;
 
-import umwelt.server.Requests.iRequest;
+import dasBoot.Requests.iRequest;
+import dasBoot.Responses.iResponse;
 
 public class UmweltResponse implements iResponse {
   private final String CRLF = "\r\n";
