@@ -1,14 +1,14 @@
-package dasBoot.test.Routers;
+package dasTest.Routers;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import dasBoot.mocks.Controllers._Controller;
-import dasBoot.mocks.Requests._Request;
-import dasBoot.mocks.Responses._Factory;
+import dasMocks.Controllers._Controller;
+import dasMocks.Requests._Request;
+import dasMocks.Responses._Factory;
 import dasBoot.Routers.Verkehrswege;
-import dasBoot.test.Helpers.FileHelper;
+import dasTest.Helpers.FileHelper;
 
 public class VerkehrswegeTest {
   Verkehrswege router;

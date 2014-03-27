@@ -1,4 +1,4 @@
-package dasBoot.mocks.Sockets.Socket;
+package dasMocks.Sockets.Socket;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

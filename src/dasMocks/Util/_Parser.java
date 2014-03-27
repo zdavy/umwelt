@@ -1,8 +1,8 @@
-package dasBoot.mocks.Util;
+package dasMocks.Util;
 
 import java.io.InputStream;
 
-import dasBoot.mocks.Requests._Request;
+import dasMocks.Requests._Request;
 import dasBoot.Utils.iParser;
 
 public class _Parser implements iParser {

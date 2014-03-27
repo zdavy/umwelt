@@ -1,6 +1,6 @@
-package dasBoot.mocks.Routers;
+package dasMocks.Routers;
 
-import dasBoot.mocks.Responses._Response;
+import dasMocks.Responses._Response;
 import dasBoot.Controllers.iController;
 import dasBoot.Requests.iRequest;
 import dasBoot.Routers.iRouter;

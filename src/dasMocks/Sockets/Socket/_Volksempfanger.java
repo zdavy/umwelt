@@ -1,10 +1,10 @@
-package dasBoot.mocks.Sockets.Socket;
+package dasMocks.Sockets.Socket;
 import dasBoot.Sockets.Socket.iSocket;
 import dasBoot.Utils.iParser;
 
 import java.io.IOException;
 
-import dasBoot.mocks.Requests._Request;
+import dasMocks.Requests._Request;
 import dasBoot.Responses.iResponse;
 
 public class _Volksempfanger implements iSocket {

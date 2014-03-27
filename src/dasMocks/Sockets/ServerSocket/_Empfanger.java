@@ -1,6 +1,6 @@
-package dasBoot.mocks.Sockets.ServerSocket;
+package dasMocks.Sockets.ServerSocket;
 
-import dasBoot.mocks.Sockets.Socket._Volksempfanger;
+import dasMocks.Sockets.Socket._Volksempfanger;
 import dasBoot.Sockets.ServerSocket.iServerSocket;
 import dasBoot.Sockets.Socket.iSocket;
 

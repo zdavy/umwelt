@@ -9,7 +9,7 @@ import dasBoot.Sockets.Socket.iSocket;
 
 public class Empfanger implements iServerSocket {
   private int port;
-  private ServerSocket.ocket;
+  private ServerSocket serverSocket;
 
   public Empfanger(int port) throws IOException {
     this.port = port;
@@ -20,20 +20,20 @@ public class Empfanger implements iServerSocket {
     return port;
   }
 
-  public void setServerSocket(ServerSocket.ocket) {
-    this.ocket =.ocket;
+  public void setServerSocket(ServerSocket serverSocket) {
+    this.serverSocket = serverSocket;
   }
 
   public boolean isOpen() {
-    return .ocket.isClosed();
+    return !serverSocket.isClosed();
   }
 
   public iSocket listen() throws IOException {
-    Socket socket =.ocket.accept();
+    Socket socket = serverSocket.accept();
     return new Volksempfanger(socket);
   }
 
   public void close() throws IOException {
-   .ocket.close();
+    serverSocket.close();
   }
 }

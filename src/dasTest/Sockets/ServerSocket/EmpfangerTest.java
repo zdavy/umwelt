@@ -1,4 +1,4 @@
-package dasBoot.test.Sockets.ServerSocket;
+package dasTest.Sockets.ServerSocket;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import dasBoot.mocks.Sockets.ServerSocket._ServerSocket;
-import dasBoot.mocks.Util._Parser;
+import dasMocks.Sockets.ServerSocket._ServerSocket;
+import dasMocks.Util._Parser;
 import dasBoot.Sockets.ServerSocket.Empfanger;
 import dasBoot.Sockets.Socket.iSocket;
 
@@ -18,8 +18,8 @@ public class EmpfangerTest {
   @Before public void init() throws IOException {
     empfanger = new Empfanger(3000);
     empfanger.close();
-    _ServerSocket.ocket = new _ServerSocket(3000);
-    empfanger.setServerSocket.ocket);
+    _ServerSocket serverSocket = new _ServerSocket(3000);
+    empfanger.setServerSocket(serverSocket);
   }
 
   @Test public void EmpfangerIsOpenOnInitialization() throws IOException {

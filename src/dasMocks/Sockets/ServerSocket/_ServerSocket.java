@@ -1,10 +1,10 @@
-package dasBoot.mocks.Sockets.ServerSocket;
+package dasMocks.Sockets.ServerSocket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import dasBoot.mocks.Sockets.Socket._Socket;
+import dasMocks.Sockets.Socket._Socket;
 
 public class _ServerSocket extends ServerSocket {
   private boolean closed = false;

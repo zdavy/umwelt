@@ -1,4 +1,4 @@
-package dasBoot.test.Sockets.Socket;
+package dasTest.Sockets.Socket;
 
 import java.io.IOException;
 
@@ -6,9 +6,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dasBoot.mocks.Responses._Response;
-import dasBoot.mocks.Sockets.Socket._Socket;
-import dasBoot.mocks.Util._Parser;
+import dasMocks.Responses._Response;
+import dasMocks.Sockets.Socket._Socket;
+import dasMocks.Util._Parser;
 import dasBoot.Sockets.Socket.Volksempfanger;
 
 public class VolksempfangerTest {

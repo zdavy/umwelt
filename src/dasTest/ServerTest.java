@@ -1,4 +1,4 @@
-package dasBoot.test;
+package dasTest;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -8,37 +8,37 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import dasBoot.mocks.Controllers._Controller;
-import dasBoot.mocks.Responses._Factory;
-import dasBoot.mocks.Sockets.ServerSocket._Empfanger;
-import dasBoot.mocks.Sockets.Socket._Volksempfanger;
+import dasMocks.Controllers._Controller;
+import dasMocks.Responses._Factory;
+import dasMocks.Sockets.ServerSocket._Empfanger;
+import dasMocks.Sockets.Socket._Volksempfanger;
 import dasBoot.Server;
-import dasBoot.test.Helpers.FileHelper;
+import dasTest.Helpers.FileHelper;
 
 import static org.junit.Assert.*;
 
 public class ServerTest {
   Hashtable<String, String> responseLine;
   _Controller controller;
-  _Empfanger.ocket;
+  _Empfanger serverSocket;
   _Volksempfanger socket;
   int PORT = 3000;
-  Server.
+  Server server;
 
   public void interact() throws Exception {
-   .start();
+    server.start();
     responseLine = socket.response.getResponseLine();
   }
 
   @Before public void init() throws Exception {
-   .ocket = new _Empfanger(PORT);
-   .= new Server.ocket);
+    serverSocket = new _Empfanger(PORT);
+    server = new Server(serverSocket);
     socket = new _Volksempfanger();
     _Factory factory = new _Factory();
     controller = new _Controller(factory);
-   .addController(controller);
-   .ocket.stubListener(socket);
-   .addResponseFactory(factory);
+    server.addController(controller);
+    serverSocket.stubListener(socket);
+    server.addResponseFactory(factory);
     FileHelper.createFile("test.txt");
   }
 

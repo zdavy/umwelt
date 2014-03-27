@@ -1,10 +1,10 @@
-package dasBoot.mocks.Controllers;
+package dasMocks.Controllers;
 import dasBoot.Controllers.iController;
 
 import java.io.File;
 
-import dasBoot.mocks.Responses._Factory;
-import dasBoot.mocks.Responses._Response;
+import dasMocks.Responses._Factory;
+import dasMocks.Responses._Response;
 import dasBoot.Requests.iRequest;
 
 public class _Controller implements iController {

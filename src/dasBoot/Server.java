@@ -1,4 +1,4 @@
-package dasBoot.
+package dasBoot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +14,16 @@ import dasBoot.Utils.iParser;
 public class Server {
   private ArrayList<iController> controllers;
   private iController[] allControllers;
-  private iServerSocket.ocket;
+  private iServerSocket serverSocket;
   private Handler handler;
   private iRouter router;
   private iFactory factory;
   private iParser parser;
   private String DIR = System.getProperty("user.dir");
 
-  public Server(iServerSocket.ocket) {
+  public Server(iServerSocket serverSocket) {
     controllers = new ArrayList<iController>();
-    this.ocket =.ocket;
+    this.serverSocket = serverSocket;
   }
 
   public void addController(iController... controllers){
@@ -63,6 +63,6 @@ public class Server {
   }
 
   private void generateHandler() {
-    handler = new Handler.ocket, router, parser);
+    handler = new Handler(serverSocket, router, parser);
   }
 }
