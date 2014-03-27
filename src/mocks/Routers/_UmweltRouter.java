@@ -1,10 +1,10 @@
-package umwelt.mocks.Routers;
+package mocks.Routers;
 
 import dasBoot.Controllers.iController;
 import dasBoot.Requests.iRequest;
 import dasBoot.Routers.iRouter;
 
-import umwelt.mocks.Responses._UmweltResponse;
+import mocks.Responses._UmweltResponse;
 
 public class _UmweltRouter implements iRouter {
   iRequest routed;

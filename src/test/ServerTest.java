@@ -1,55 +1,64 @@
-package umwelt.test;
+package test;
 
-import java.util.Hashtable;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import dasBoot.Server;
-
-import umwelt.mocks.Controllers._Controller;
-import umwelt.mocks.Sockets.Client._UmweltSocket;
-import umwelt.mocks.Sockets.Server._UmweltServerSocket;
-import umwelt.server.Responses.UmweltFactory;
-
+import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ServerTest {
-  Hashtable<String, String> responseLine;
-  _UmweltServerSocket serverSocket;
-  _UmweltSocket socket;
-  int PORT = 3000;
-  Server server;
+import test.Helpers.FileHelper;
 
-  public void interact() throws Exception {
-    server.start();
-    responseLine = socket.response.getResponseLine();
-  }
+import mocks.Sockets.Client._Volksempfanger;
+import mocks.Sockets.Server._Empfanger;
+
+import umwelt.UmweltServer;
+import umwelt.Controllers.UmweltController;
+import umwelt.Responses.UmweltFactory;
+import umwelt.Responses.UmweltResponse;
+
+public class ServerTest {
+  UmweltServer server;
+  UmweltController controller;
+  _Volksempfanger socket;
+  _Empfanger serverSocket;
 
   @Before public void init() throws Exception {
-    serverSocket = new _UmweltServerSocket(PORT);
-    server = new Server(serverSocket);
-    socket = new _UmweltSocket();
-    server.addController(new _Controller("test"));
-    server.addResponseFactory(new UmweltFactory(System.getProperty("user.dir")));
+    socket = new _Volksempfanger();
+    serverSocket = new _Empfanger(0000);
+    server = new UmweltServer(serverSocket);
+    controller = new UmweltController();
     serverSocket.stubListener(socket);
+    server.addController(controller);
+    server.addResponseFactory(new UmweltFactory(System.getProperty("user.dir")));
+  }
+
+  @Before public void stubFile() throws Exception {
+    FileHelper.createFile("test.txt");
+  }
+
+  @After public void destubFile() {
+    FileHelper.destroyFile("test.txt");
   }
 
   @Test public void ACCEPTANCE_TEST_200() throws Exception {
-    socket.stubRequest("GET /test/test.txt HTTP/1.1\r\nTest: Header\r\n");
-    interact();
-    assertEquals("200", responseLine.get("code"));
-  }
-
-  @Test public void ACCEPTANCE_TEST_404() throws Exception {
-    socket.stubRequest("GET /test/test.fake HTTP/1.1\r\nTest: Header\r\n");
-    interact();
-    assertEquals("404", responseLine.get("code"));
+    UmweltResponse response = new UmweltResponse();
+    response.setStatus("200", "OK");
+    controller.get("/test.txt", response);
+    String data = "GET /test.txt HTTP/1.1\r\nTest: Header\r\n";
+    socket.stubInputStream(data);
+    server.start();
+    assertEquals("200", socket.response.getResponseLine().get("code"));
   }
 
   @Test public void ACCEPTANCE_TEST_405() throws Exception {
-    socket.stubRequest("PUT /test/test.txt HTTP/1.1\r\nTest: Header\r\n");
-    interact();
-    assertEquals("405", responseLine.get("code"));
+    controller.get("/test.txt", new UmweltResponse());
+    String data = "POST /test.txt HTTP/1.1\r\nTest: Header\r\n";
+    socket.stubInputStream(data);
+    server.start();
+    assertEquals("405", socket.response.getResponseLine().get("code"));
+  }
+
+  @Test public void ACCEPTANCE_TEST_404() throws Exception {
+    String data = "POST /fail HTTP/1.1\r\nTest: Header\r\n";
+    socket.stubInputStream(data);
+    server.start();
+    assertEquals("404", socket.response.getResponseLine().get("code"));
   }
 }

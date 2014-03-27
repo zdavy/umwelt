@@ -1,4 +1,4 @@
-package umwelt.mocks.Controllers;
+package mocks.Controllers;
 
 import java.io.File;
 import java.util.Hashtable;
@@ -7,7 +7,7 @@ import dasBoot.Controllers.iController;
 import dasBoot.Requests.iRequest;
 import dasBoot.Responses.iResponse;
 
-import umwelt.mocks.Responses._UmweltResponse;
+import mocks.Responses._UmweltResponse;
 
 public class _Controller implements iController {
   private Hashtable<String, iResponse> routes;

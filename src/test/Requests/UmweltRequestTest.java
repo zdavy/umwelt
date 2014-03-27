@@ -1,25 +1,28 @@
-package umwelt.test.Requests;
-import umwelt.server.Requests.UmweltRequest;
+package test.Requests;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
 import org.junit.*;
+
+import umwelt.Requests.UmweltRequest;
+import umwelt.Util.UmweltParser;
+
 import static org.junit.Assert.*;
 
 
 public class UmweltRequestTest {
   UmweltRequest request;
 
-  @Before public void init() throws IOException {
+  @Before public void init() {
     ByteArrayInputStream input;
     String data;
     data = "GET / HTTP/1.1\r\n" +
            "Test: Header\r\n" +
            "Content-Length: 19\r\n\r\ndata=test&more=data";
     input = new ByteArrayInputStream(data.getBytes(Charset.forName("utf-8")));
-    request = new UmweltRequest(input);
+    request = new UmweltParser().request(input);
   }
 
   @Test public void requestParsesRequestLine() {
@@ -43,7 +46,7 @@ public class UmweltRequestTest {
            "Test: Header\r\n";
     ByteArrayInputStream input;
     input = new ByteArrayInputStream(data.getBytes(Charset.forName("utf-8")));
-    request = new UmweltRequest(input);
+    request = new UmweltParser().request(input);
     assertEquals("/test", request.uri());
     assertEquals("true", request.body("params"));
   }

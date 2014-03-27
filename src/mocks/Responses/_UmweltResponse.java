@@ -1,4 +1,4 @@
-package umwelt.mocks.Responses;
+package mocks.Responses;
 
 import java.util.Hashtable;
 
@@ -16,6 +16,10 @@ public class _UmweltResponse implements iResponse {
 
   public void stubCode(String code) {
     this.code = code;
+  }
+
+  public String code() {
+    return code;
   }
 
   public Hashtable<String, String> getHeader() {

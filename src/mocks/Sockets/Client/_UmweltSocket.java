@@ -1,13 +1,12 @@
-package umwelt.mocks.Sockets.Client;
+package mocks.Sockets.Client;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
+import umwelt.Requests.UmweltRequest;
 
 import dasBoot.Responses.iResponse;
 import dasBoot.Sockets.Socket.iSocket;
 import dasBoot.Utils.iParser;
-
-import umwelt.server.Requests.UmweltRequest;
 
 public class _UmweltSocket implements iSocket {
   public boolean socketClosed = false;
@@ -24,7 +23,7 @@ public class _UmweltSocket implements iSocket {
 
   public UmweltRequest request(iParser parser) throws IOException {
     requestMade = true;
-    return new UmweltRequest(new ByteArrayInputStream(requestData.getBytes()));
+    return new UmweltRequest();
   }
 
   public void stubRequest(String data) {

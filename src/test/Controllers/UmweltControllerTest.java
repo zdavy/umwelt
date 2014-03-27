@@ -1,13 +1,14 @@
-package umwelt.test.Controllers;
+package test.Controllers;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import umwelt.Controllers.UmweltController;
+
 import dasBoot.Responses.iResponse;
 
-import umwelt.mocks.Requests._UmweltRequest;
-import umwelt.mocks.Responses._UmweltResponse;
-import umwelt.server.Controllers.UmweltController;
+import mocks.Requests._UmweltRequest;
+import mocks.Responses._UmweltResponse;
 
 import static org.junit.Assert.*;
 
@@ -68,31 +69,31 @@ public class UmweltControllerTest {
     iResponse response = new _UmweltResponse();
 
     request.stubURI("/get");
-    request.stubMethod("get");
+    request.stubMethod("GET");
     assertFalse(controller.valid(request));
     controller.get("/get", response);
     assertEquals(controller.handle(request), response);
 
     request.stubURI("/post");
-    request.stubMethod("post");
+    request.stubMethod("POST");
     assertFalse(controller.valid(request));
     controller.post("/post", response);
     assertEquals(controller.handle(request), response);
 
     request.stubURI("/put");
-    request.stubMethod("put");
+    request.stubMethod("PUT");
     assertFalse(controller.valid(request));
     controller.put("/put", response);
     assertEquals(controller.handle(request), response);
 
     request.stubURI("/patch");
-    request.stubMethod("patch");
+    request.stubMethod("PATCH");
     assertFalse(controller.valid(request));
     controller.patch("/patch", response);
     assertEquals(controller.handle(request), response);
 
     request.stubURI("/delete");
-    request.stubMethod("delete");
+    request.stubMethod("DELETE");
     assertFalse(controller.valid(request));
     controller.delete("/delete", response);
     assertEquals(controller.handle(request), response);

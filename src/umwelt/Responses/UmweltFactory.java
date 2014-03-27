@@ -1,10 +1,11 @@
-package umwelt.server.Responses;
+package umwelt.Responses;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Hashtable;
 
 import dasBoot.Requests.iRequest;
 import dasBoot.Responses.iFactory;
@@ -12,10 +13,13 @@ import dasBoot.Responses.iResponse;
 
 
 public class UmweltFactory implements iFactory {
+  private Hashtable<String, String> MIMETypes;
   private iResponse response;
   private String DIR;
 
   public UmweltFactory(String dir) {
+    MIMETypes = new Hashtable<String, String>();
+    setMIMETypes();
     DIR = dir;
   }
 
@@ -24,7 +28,7 @@ public class UmweltFactory implements iFactory {
   public iResponse get(iRequest request) throws IOException {
     response = new UmweltResponse();
     set200();
-    response.setHeader("Content-Type", "text/plain");
+    response.setHeader("Content-Type", getMIMEType(extend(request.uri())));
     getFile(extend(request.uri()));
     return response;
   }
@@ -94,8 +98,31 @@ public class UmweltFactory implements iFactory {
 
   private String extend(String uri) {
     String filepath = DIR + uri;
-    System.out.println(filepath);
-    return (new File(filepath).exists()) ? filepath : filepath + ".html";
+    return (new File(filepath + ".html").exists()) ? filepath + ".html" : filepath;
+  }
 
+  private String getMIMEType(String filename) {
+    String extension = getExtensions(filename);
+    if(MIMETypes.containsKey(extension)) {
+      return MIMETypes.get(extension);
+    } else {
+      return "text/plain";
+    }
+  }
+
+  private String getExtensions(String filename) {
+    try
+      { return filename.substring(filename.lastIndexOf(".")); }
+    catch (StringIndexOutOfBoundsException e)
+      {  return ".txt"; }
+  }
+
+  private void setMIMETypes() {
+    MIMETypes.put(  ".js", "text/javascript");
+    MIMETypes.put(".html", "text/html");
+    MIMETypes.put( ".png", "image/png");
+    MIMETypes.put( ".jpg", "image/jpg");
+    MIMETypes.put( ".css", "text/css");
+    MIMETypes.put( ".txt", "text/plain");
   }
 }

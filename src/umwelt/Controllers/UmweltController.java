@@ -1,8 +1,8 @@
-package umwelt.server.Controllers;
+package umwelt.Controllers;
 
 import java.util.Hashtable;
 
-import umwelt.server.Responses.UmweltFactory;
+import umwelt.Responses.UmweltFactory;
 
 import dasBoot.Controllers.iController;
 import dasBoot.Requests.iRequest;
@@ -24,8 +24,8 @@ public class UmweltController implements iController {
     newFactory();
     String route = request.uri();
     String method = request.method();
-      iResponse response = routes.get(route).get(method);
-      return (response == null) ? factory.MethodNotAllowed() : response;
+    iResponse response = routes.get(route).get(method);
+    return (response == null) ? factory.MethodNotAllowed() : response.proccess(request);
   }
 
   private void newFactory() {
@@ -38,23 +38,23 @@ public class UmweltController implements iController {
   }
 
   public void get(String route, iResponse response) {
-    addRoute("get", route, response);
+    addRoute("GET", route, response);
   }
 
   public void post(String route, iResponse response) {
-    addRoute("post", route, response);
+    addRoute("POST", route, response);
   }
 
   public void put(String route, iResponse response) {
-    addRoute("put", route, response);
+    addRoute("PUT", route, response);
   }
 
   public void patch(String route, iResponse response) {
-    addRoute("patch", route, response);
+    addRoute("PATCH", route, response);
   }
 
   public void delete(String route, iResponse response) {
-    addRoute("delete", route, response);
+    addRoute("DELETE", route, response);
   }
 
   public void addRoute(String method, String route, iResponse response) {

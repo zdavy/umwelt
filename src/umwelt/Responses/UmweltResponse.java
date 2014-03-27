@@ -1,4 +1,4 @@
-package umwelt.server.Responses;
+package umwelt.Responses;
 
 import java.util.Hashtable;
 
@@ -14,8 +14,8 @@ public class UmweltResponse implements iResponse {
 
   public UmweltResponse() {
     statusLine = new Hashtable<String, String>();
-    header = new Hashtable<String, String>();
-    body = new Hashtable<String, byte[]>();
+    header     = new Hashtable<String, String>();
+    body       = new Hashtable<String, byte[]>();
   }
 
   public void setStatus(String code, String reason) {

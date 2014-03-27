@@ -1,24 +1,17 @@
 package mocks.Sockets.Server;
 
+import mocks.Sockets.Client._Volksempfanger;
+
 import dasBoot.Sockets.ServerSocket.iServerSocket;
 import dasBoot.Sockets.Socket.iSocket;
 
-import mocks.Sockets.Client._UmweltSocket;
-
-public class _UmweltServerSocket implements iServerSocket {
+public class _Empfanger implements iServerSocket {
   private boolean listen = false;
-  public boolean open;
+  public boolean open = true;
   iSocket listener;
-  private int port;
 
-  public _UmweltServerSocket(int port) {
-    open = true;
-    listener = new _UmweltSocket();
-    this.port = port;
-  }
-
-  public void mockOpen() {
-    open = true;
+  public _Empfanger(int port) {
+    listener = new _Volksempfanger();
   }
 
   public void stubListener(iSocket listener) {
@@ -31,8 +24,10 @@ public class _UmweltServerSocket implements iServerSocket {
     return listener;
   }
 
-  public void close() {  }
+  public void close() {
+
+  }
+
   public boolean isOpen() { return open; }
   public boolean listening() { return listen; }
-  public int getPort() { return port; }
 }
