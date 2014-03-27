@@ -1,9 +1,10 @@
 package umwelt.server.Requests;
 
-import java.io.InputStream;
-
 public interface iRequest {
-  public void read(InputStream input);
   public String method();
   public String uri();
+  public String version();
+  public int contentLength();
+  public String body(String value);
+  public String header(String value);
 }

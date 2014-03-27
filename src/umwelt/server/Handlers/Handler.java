@@ -9,7 +9,6 @@ import umwelt.server.Utils.iParser;
 
 public class Handler implements iHandler {
   private  iServerSocket empfanger;
-  private  iSocket volksempfanger;
   private  iRouter router;
   private  iParser parser;
 
@@ -21,8 +20,7 @@ public class Handler implements iHandler {
 
   public void start() throws Exception {
     while(empfanger.isOpen()) {
-      volksempfanger = empfanger.listen();
-      interact(volksempfanger);
+      interact(empfanger.listen());
     }
   }
 

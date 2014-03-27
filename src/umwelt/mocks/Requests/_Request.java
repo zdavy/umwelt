@@ -1,13 +1,13 @@
 package umwelt.mocks.Requests;
 
-import java.io.InputStream;
-
 import umwelt.server.Requests.iRequest;
 
 public class _Request implements iRequest {
-  public String method = "test";
-  public String uri = "/test";
   public boolean proccessed = false;
+  public int contentLength;
+  public String version;
+  public String method;
+  public String uri;
 
   public _Request(String method, String uri) {
     this.method = method;
@@ -16,9 +16,11 @@ public class _Request implements iRequest {
 
   public void stubURI(String uri) { this.uri = uri; }
   public void stubMethod(String method) { this.method = method; }
-
+  public void stubVersion(String version) { this.version = version; }
   public String method() { return method; }
   public String uri() { return uri; }
-
-  public void read(InputStream _) {  }
+  public String version() { return version; }
+  public int contentLength() { return contentLength; }
+  public String header(String value) { return "header"; }
+  public String body(String value) { return "body"; }
 }

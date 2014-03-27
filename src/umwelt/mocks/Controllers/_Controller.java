@@ -8,7 +8,6 @@ import umwelt.mocks.Responses._Response;
 import umwelt.server.Requests.iRequest;
 
 public class _Controller implements iController {
-  public _Response response = new _Response();
   public _Factory factory;
   public boolean method;
 
@@ -17,18 +16,18 @@ public class _Controller implements iController {
   }
 
   public boolean valid(iRequest request) {
-    return new File(System.getProperty("user.dir") + request.uri()).exists();
+    String dir = System.getProperty("user.dir");
+    String file = dir + request.uri();
+    return new File(file).exists();
   }
 
   public _Response handle(iRequest request) {
-    if (validMethod()) {
-      response.stubCode("200"); }
-    else {
-      response.stubCode("405"); }
+    _Response response = new _Response();
+    String code = validMethod() ? "200" : "405";
+    response.stubCode(code);
     return response;
   }
 
   public void stubMethodExists(boolean method) { this.method = true; }
-  public void stubResponse(_Response stub) { response = stub; }
   private boolean validMethod() { return method; }
 }

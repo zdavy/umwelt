@@ -17,15 +17,14 @@ public class _Response implements iResponse {
     this.code = code;
   }
 
-  public byte[] toByte() throws Exception { return new byte[0]; }
-  public Hashtable<String, String> getHeader() { return null; }
-  public Hashtable<String, byte[]> getBody() { return null; }
-
   public _Response() {  }
   public void setContent(byte[] content) {  }
   public void setContent(String content) {  }
   public void setVersion(String version) {  }
   public void setHeader(String key, String value) {  }
   public void setStatus(String method, String uri) {  }
+  public Hashtable<String, byte[]> getBody() { return null; }
   public _Response proccess(iRequest request) { return this; }
+  public Hashtable<String, String> getHeader() { return null; }
+  public byte[] toByte() throws Exception { return new byte[0]; }
 }
