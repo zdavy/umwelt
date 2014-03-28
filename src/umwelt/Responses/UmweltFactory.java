@@ -101,7 +101,7 @@ public class UmweltFactory implements iFactory {
     return (new File(filepath + ".html").exists()) ? filepath + ".html" : filepath;
   }
 
-  private String getMIMEType(String filename) {
+  public String getMIMEType(String filename) {
     String extension = getExtensions(filename);
     if(MIMETypes.containsKey(extension)) {
       return MIMETypes.get(extension);

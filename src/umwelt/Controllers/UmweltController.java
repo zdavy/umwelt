@@ -28,7 +28,7 @@ public class UmweltController implements iController {
     return (response == null) ? factory.MethodNotAllowed() : response.proccess(request);
   }
 
-  private void newFactory() {
+  protected void newFactory() {
     factory = new UmweltFactory(DIR);
   }
 
