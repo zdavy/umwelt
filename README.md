@@ -113,8 +113,8 @@ public class Server {
 ```
 
 #### Compile your Java files
-Since I keep all my libarary is a ``` lib/ ``` folder and my source files in a
-``` src/ ``` folder, And I like all my class files to end up in a ``` bin/ ```
+Since I keep all my Libraries in a ``` lib/ ``` folder, my source files in a
+``` src/ ``` folder, And I like my class files to end up in a ``` bin/ ```
 folder mine would look something like this.
 
 ```
@@ -126,14 +126,9 @@ This will also of course be a little different for you if you keep your
 directory organized different than I do, but the important thing to do is
 include the jars in your classpath when you run the server as well.
 
-cd into the folder where your Server.class is located:
-```
-  $ cd bin/
-```
-
 Fire up your server
 ```
-  $ java -cp ../lib/* Server
+  $ java -cp lib/*:bin Server
 ```
 
 ### That's all there is to it
