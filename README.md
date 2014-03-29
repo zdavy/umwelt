@@ -30,5 +30,5 @@ public class FirstController extends UmweltController {
 }
 ```
 This will add a get route to the controller's routes with a basic
-UmweltResponse; (You can check out the Wiki for a more explaination of
+UmweltResponse; (You can check out the Wiki for a more detailed explaination of
 responses)
