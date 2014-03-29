@@ -1,7 +1,7 @@
 # Umwelt (The Environment We Live In)
 
-Umwelt is a simple, extendable web Development environment built ontop of the
-flexible HTTP handling service
+Umwelt is a simple, extendable Web Application Framework for Java built ontop of
+the flexible HTTP handling service
 [dasBoot](http://www.github.com/zachmokahn/dasBoot).
 
 ## Quickstart guide
