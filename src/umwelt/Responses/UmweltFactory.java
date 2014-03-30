@@ -13,9 +13,9 @@ import dasBoot.Responses.iResponse;
 
 
 public class UmweltFactory implements iFactory {
-  private Hashtable<String, String> MIMETypes;
-  private iResponse response;
-  private String DIR;
+  protected Hashtable<String, String> MIMETypes;
+  protected iResponse response;
+  protected String DIR;
 
   public UmweltFactory(String dir) {
     MIMETypes = new Hashtable<String, String>();
@@ -33,7 +33,7 @@ public class UmweltFactory implements iFactory {
     return response;
   }
 
-  private void set200() {
+  protected void set200() {
     response.setStatus("200", "OK");
     response.setVersion("HTTP/1.1");
   }
@@ -56,12 +56,12 @@ public class UmweltFactory implements iFactory {
     return response;
   }
 
-  private void set404() {
+  protected void set404() {
     response.setStatus("404", "Not Found");
     response.setVersion("HTTP/1.1");
   }
 
-  private void assign404File(String file) {
+  protected void assign404File(String file) {
     try {
       response.setContent(bytify(file)); }
     catch (Exception e) {
@@ -78,12 +78,12 @@ public class UmweltFactory implements iFactory {
     return response;
   }
 
-  private void set405() {
+  protected void set405() {
     response.setStatus("405", "Method Not Allowed");
     response.setVersion("HTTP/1.1");
   }
 
-  private void assign405File(String file) {
+  protected void assign405File(String file) {
     try {
       response.setContent(bytify(file)); }
     catch (Exception e) {
@@ -91,12 +91,12 @@ public class UmweltFactory implements iFactory {
   }
 /*___________________________________________________________________________ */
 
-  private byte[] bytify(String path) throws IOException {
+  protected byte[] bytify(String path) throws IOException {
     Path file = Paths.get(path);
     return Files.readAllBytes(file);
   }
 
-  private String extend(String uri) {
+  protected String extend(String uri) {
     String filepath = DIR + uri;
     return (new File(filepath + ".html").exists()) ? filepath + ".html" : filepath;
   }
@@ -110,14 +110,14 @@ public class UmweltFactory implements iFactory {
     }
   }
 
-  private String getExtensions(String filename) {
+  protected String getExtensions(String filename) {
     try
       { return filename.substring(filename.lastIndexOf(".")); }
     catch (StringIndexOutOfBoundsException e)
       {  return ".txt"; }
   }
 
-  private void setMIMETypes() {
+  protected void setMIMETypes() {
     MIMETypes.put(  ".js", "text/javascript");
     MIMETypes.put(".html", "text/html");
     MIMETypes.put( ".png", "image/png");
