@@ -5,6 +5,12 @@ import dasBoot.Responses.iFactory;
 import dasBoot.Responses.iResponse;
 
 public class _UmweltFactory implements iFactory {
+  public iResponse get(String request) throws Exception {
+    _UmweltResponse response = new _UmweltResponse();
+    response.stubCode("200");
+    return response;
+  }
+
   public iResponse get(iRequest request) throws Exception {
     _UmweltResponse response = new _UmweltResponse();
     response.stubCode("200");

@@ -28,7 +28,18 @@ public class UmweltParser implements iParser {
 
   private String nextLine() {
     try {
-      return input.readLine();
+      String value = input.readLine();
+      return value;
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
+  private String nextLine(char[] content) {
+    try {
+      input.read(content, 0, request.contentLength());
+      String value = new String(content);
+      return value;
     } catch (IOException e) {
       return null;
     }
@@ -65,15 +76,18 @@ public class UmweltParser implements iParser {
 
   private void assignBody(char[] content) {
     if(hasContent(content)) {
-      String body = nextLine();
+      String body = nextLine(content);
       addParameters(String.valueOf(body));
     }
   }
 
   private void addParameters(String content) {
-      for(String param: content.split("&")) {
+    String decoded;
+    try { decoded = java.net.URLDecoder.decode(content, "UTF-8");}
+    catch (Exception e) { decoded = content; }
+    for(String param: decoded.split("&")) {
         request.setBody(param.split("="));
-      }
+    }
   }
 
   private boolean hasContent(char[] content) {

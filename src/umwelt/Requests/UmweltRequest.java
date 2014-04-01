@@ -21,6 +21,10 @@ public class UmweltRequest implements iRequest {
     return requestLine.get("version");
   }
 
+  public Hashtable<String, String> getBody() {
+    return body;
+  }
+
   public int contentLength() {
     return header.containsKey("Content-Length") ? getLength() : 0;
   }

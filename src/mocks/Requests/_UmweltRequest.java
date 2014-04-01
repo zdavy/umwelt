@@ -1,5 +1,7 @@
 package mocks.Requests;
 
+import java.util.Hashtable;
+
 import dasBoot.Requests.iRequest;
 
 public class _UmweltRequest implements iRequest {
@@ -10,6 +12,10 @@ public class _UmweltRequest implements iRequest {
 
   public boolean proccessed = false;
   public _UmweltRequest() {
+  }
+
+  public Hashtable<String, String> getBody() {
+    return new Hashtable<String, String>();
   }
 
   public void stubURI(String uri) {

@@ -26,10 +26,14 @@ public class UmweltFactory implements iFactory {
 /*____________________________________GET____________________________________ */
 
   public iResponse get(iRequest request) throws IOException {
+    return get(request.uri());
+  }
+
+  public iResponse get(String request) throws IOException {
     response = new UmweltResponse();
     set200();
-    response.setHeader("Content-Type", getMIMEType(extend(request.uri())));
-    getFile(extend(request.uri()));
+    response.setHeader("Content-Type", getMIMEType(extend(request)));
+    getFile(extend(request));
     return response;
   }
 
